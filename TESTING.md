@@ -1,6 +1,6 @@
 # Tests and live checks
 
-The automated suite checks the storage baseline validator, rejection of weakened settings, public-artifact privacy patterns, and synthetic DOCX generation without external relationships.
+The automated suite checks the storage baseline, privacy filters, synthetic DOCX generation, and DLP activation safeguards. The DLP tests execute PowerShell against mocked cmdlets: a valid strict rule can be enabled; an override, weaker classifier, wrong site, or external-only block fails the gate.
 
 ```sh
 python -m pip install -r requirements.txt
@@ -8,10 +8,6 @@ python -m pytest -q
 python scripts/check_public_files.py
 ```
 
-The CI workflow also compiles every Bicep file and scans full Git history with Gitleaks. CI does not authenticate to Azure and does not rerun live changes.
+PowerShell 7 is required for the DLP tests. GitHub Actions also compiles all four Bicep files and runs Gitleaks against full Git history. CI has no Azure credentials and does not change the lab.
 
-Live checks used dedicated identities and synthetic documents. Actual API responses were retained privately; selected fields are published under [evidence](docs/evidence/public/README.md). These checks exercised RBAC, disabled key/anonymous access, the IP firewall, custom Azure policies, MFA rejection, and a native Sentinel detection.
-
-The local Windows test run uses an ignored private temporary directory because the host's default pytest temporary directory denied access. This does not change the assertions. Final counts and CI outcome are in [validation](VALIDATION.md).
-
-The Purview sharing test includes a nonsensitive control file. Both requests failed with sharingDisabled, preventing a content-specific DLP conclusion. Endpoint behavior was not simulated or counted as a passing test.
+I tested Azure RBAC, key/anonymous access, the IP firewall, Azure Policy, MFA, and Sentinel against the retained deployment. The [evidence index](docs/evidence/public/README.md) links the requests, responses, queries, and portal captures. [Validation](VALIDATION.md) separates these live results from the automated checks.

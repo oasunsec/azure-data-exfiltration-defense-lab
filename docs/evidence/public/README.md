@@ -18,15 +18,19 @@ Screenshots are genuine portal captures cropped to the relevant controls. JSON c
 | [Policy compliance](policy-compliance.json) | Classification remediation and custom-policy results |
 | [Identity sign-ins](identity-signins.json) | Report-only success and enforced MFA rejection |
 | [Sharing control](sharing-control-test.json) | Both files rejected by the site restriction |
-| [DLP rule](dlp-rule.json) | External-access block configured; not enforcement proof |
+| [Original DLP rule](dlp-rule.json) | Earlier external-user rule, retained as baseline evidence |
+| [Strict DLP readiness](dlp-strict-readiness.json) | Single-site scope, high-confidence classifier, strict block, no overrides, distribution state |
+| [Activity Explorer query](dlp-activity-query.json) | Successful query with zero records in its 24-hour window |
+| [Current cleanup](dlp-pass-cleanup.json) | Temporary compliance role removed; workload secrets zero; sharing unchanged |
 | [Classifier test](dlp-classifier-test.json) | Credit Card Number matched synthetic text; not a file-enforcement test |
 | [Cross-source correlation](cross-source-correlation.json) | Three matching account-change/denied-access pairs |
 | [Sentinel trigger](sentinel-trigger.json) | Real 403 write used for the native detection |
 | [Sentinel incident](sentinel-incident.json) | Native Medium incident 19 |
 | [DLP policy state](dlp-policy-state.json) | Policy mode and observed distribution state |
+| [Endpoint readiness](endpoint-readiness.json) | Current Defender and Azure VM inventory; no dedicated lab endpoint |
 | [Defender inventory](defender-inventory.json) | No onboarded machines available for endpoint tests |
 | [Credential cleanup](credential-cleanup.json) | Both workload identities have zero password credentials |
 | [Temporary-role cleanup](temporary-role-cleanup.json) | The lab-created compliance elevation was removed |
 | [Release checks](release-checks.json) | Tests, compiled templates, privacy check, and secret-scan results |
 
-The site restriction cannot be presented as a DLP content match. The cross-source join cannot establish who accessed the file. Additional screenshots are included only after comparison with the API evidence.
+Each result describes the tested operation. See [limitations](../../../LIMITATIONS.md) for investigation and attribution boundaries.

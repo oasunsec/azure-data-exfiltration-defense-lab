@@ -1,6 +1,6 @@
 # Azure controls
 
-The lab resource group is in South Central US. The storage account uses Standard LRS, private blob access, seven-day blob/container soft delete, and blob versioning. Its data-plane diagnostic categories are StorageRead, StorageWrite, and StorageDelete in the dedicated `StorageBlobLogs` table.
+I deployed the lab resource group in South Central US. The storage account uses Standard LRS, private blob access, seven-day blob/container soft delete, and blob versioning. Its data-plane diagnostic categories are StorageRead, StorageWrite, and StorageDelete in the dedicated `StorageBlobLogs` table.
 
 The account key remained capable of being listed by the existing operator, but data requests signed with it were rejected. Disabling Shared Key is not equivalent to disabling the management-plane listKeys operation. No shared key is used by the lab workloads.
 
@@ -13,7 +13,8 @@ Microsoft-managed keys are retained. Customer-managed keys, private endpoints, a
 | File | Scope |
 | --- | --- |
 | [main.bicep](infra/main.bicep) | Storage, container, data diagnostics, retention lock |
-| [policy.bicep](infra/policy.bicep) | Custom definitions and assignments to the lab RG |
+| [policy.bicep](infra/policy.bicep) | Custom policy definitions |
+| [policy-assignments.bicep](infra/policy-assignments.bicep) | Assignments scoped to the lab RG |
 | [sentinel.bicep](infra/sentinel.bicep) | Analytic in an existing workspace |
 
 Operator IP and workspace parameters are supplied privately. The template defaults to the remediated classification tag. The temporary missing-tag state belonged to the audit experiment.

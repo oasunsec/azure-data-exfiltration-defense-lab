@@ -1,0 +1,18 @@
+{
+  "CheckedAt": "2026-09-08T17:10:05.4289326Z",
+  "Policy": "Data Defense Lab - Financial external access",
+  "Mode": "Enable",
+  "Distribution": "Pending",
+  "DedicatedSiteOnly": true,
+  "Rule": "Data Defense Lab - Strict financial access restriction",
+  "Disabled": false,
+  "BlockAccess": true,
+  "BlockAccessScope": "All",
+  "AccessScope": "NotInOrganization",
+  "OverrideCount": 0,
+  "Classifier": "Credit Card Number",
+  "MinimumConfidence": "85",
+  "MinimumCount": "1",
+  "PreviousRuleMode": "PendingDeletion",
+  "EnforcementTestPerformed": false
+}

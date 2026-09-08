@@ -13,11 +13,11 @@
 | Azure Policy audit | Require Confidential classification tag | Noncompliant before tag; compliant after remediation | [Policy results](docs/evidence/public/policy-compliance.json) | VALIDATED |
 | MFA | One included lab user; administrator exclusions | Password grant succeeded in report-only mode; enforced policy rejected it | [Sign-ins](docs/evidence/public/identity-signins.json) | VALIDATED |
 | Cloud sharing | Dedicated private SharePoint site | Anonymous links rejected for sensitive and control files: sharingDisabled | [Sharing tests](docs/evidence/public/sharing-control-test.json) | VALIDATED SITE RESTRICTION |
-| Purview DLP | Credit Card Number + external-sharing condition; block external access, no override | Policy/rule export confirmed; site restriction prevented an independent DLP enforcement test | [Rule](docs/evidence/public/dlp-rule.json) | CONFIGURED; ENFORCEMENT NOT VALIDATED |
+| Purview DLP | Credit Card Number + external-sharing condition; strict access restriction, no override | Policy/rule export confirmed; site restriction prevented an independent DLP enforcement test | [Strict rule](docs/evidence/public/dlp-strict-readiness.json) | CONFIGURED; ENFORCEMENT NOT VALIDATED |
 | Cross-source investigation | AzureActivity + StorageBlobLogs | Three resource/time matches after account changes | [Results](docs/evidence/public/cross-source-correlation.json) | VALIDATED |
-| Sentinel analytic | Medium denied-write rule; resource-based grouping | Deployed rule; runtime outcome recorded separately | [Sentinel](SENTINEL.md) | SEE VALIDATION |
+| Sentinel analytic | Medium denied-write rule; resource-based grouping | Rejected write produced native Medium incident 19 | [Sentinel](SENTINEL.md) | VALIDATED |
 | Resource retention | CanNotDelete RG lock | Lock deployed; no destructive deletion test | [Bicep](infra/main.bicep) | CONFIGURATION VERIFIED |
 | Endpoint DLP / USB | No onboarded test endpoint or USB test device | No endpoint enforcement exercised | [Endpoint scope](DEFENDER.md) | NOT VALIDATED |
 | Defender endpoint correlation | License available; machine inventory empty | No process/file/network event available | [Defender](DEFENDER.md) | NOT VALIDATED |
 
-Configuration evidence is not behavioral proof. Other inherited policy findings remain outside the two custom-policy checks; this matrix is not a claim of complete tenant compliance.
+The configuration-only rows were checked through ARM and the portal. Behavioral rows link actual requests and results. Other inherited policy findings remain outside the two custom-policy tests.

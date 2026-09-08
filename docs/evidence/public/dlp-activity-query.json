@@ -1,0 +1,9 @@
+{
+  "CheckedAt": "2026-09-08T16:45:46.0707601Z",
+  "Source": "Export-ActivityExplorerData",
+  "Window": "24 hours preceding export",
+  "ResultCode": "Success",
+  "RecordCount": 0,
+  "TotalResultCount": 0,
+  "DlpEnforcementEstablished": false
+}

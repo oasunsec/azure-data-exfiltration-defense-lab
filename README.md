@@ -1,42 +1,46 @@
 # Azure Data Exfiltration Defense Lab
 
-Azure storage, identity, and detection controls tested against a dedicated financial-records container and lab identity.
+I tested storage, identity, and detection controls around a dedicated financial-records container and SharePoint site.
 
-**All financial data used in this lab is synthetic test data.**
+**Sample uses synthetic financial data only.**
+
+## Architecture
 
 ```mermaid
 flowchart LR
-  F[Financial records] --> S[Encrypted Azure Blob Storage]
-  I[Entra identities and scoped RBAC] --> S
-  N[Default-deny firewall] --> S
+  I[Scoped Entra workloads] --> S[Azure Blob Storage]
+  N[IP firewall and Azure Policy] --> S
   S --> L[StorageBlobLogs]
   A[Azure Activity] --> W[Log Analytics]
   E[Entra sign-ins] --> W
   L --> W
-  W --> Q[Sentinel detection and investigation]
+  W --> Q[Sentinel alert and investigation]
+  F[Financial document] --> P[Separate SharePoint and Purview test]
 ```
 
-## Observed results
+## Controls tested
 
-- A Reader could read the financial document but could not overwrite it. A Contributor changed the account but could not grant access.
-- Anonymous access and shared-key authentication were rejected. Removing the allowed network address blocked an otherwise authorized reader; restoring it restored access.
-- Azure Policy rejected a public-blob setting change. The classification audit moved from noncompliant to compliant after remediation.
-- The dedicated user's password-only sign-in succeeded in report-only mode. Enforced MFA rejected it with error 50079; the sign-in record named the lab policy.
-- A KQL investigation linked three denied requests to preceding account changes on the same resource within five minutes.
-- SharePoint rejected anonymous links for both the financial file and a nonsensitive control file because site sharing was disabled. This does **not** prove a DLP block.
+| Control | Result |
+| --- | --- |
+| Scoped RBAC | Reader downloaded the file but could not overwrite it. Contributor uploaded data but could not grant roles. |
+| Storage access | Anonymous and shared-key requests were rejected. Removing the allowed IP blocked an authorized reader; restoring it restored access. |
+| Azure Policy | Public-blob enablement was rejected. The classification audit passed after I added the required tag. |
+| MFA | Password-only authentication succeeded in report-only mode and failed when the lab MFA policy was enabled. |
+| Sentinel | A denied write produced a native Medium alert and incident. |
+| Investigation | I correlated three denied reads with preceding changes on the same storage account. |
 
-## Detection scope
+## Evidence
 
-The Sentinel rule **Financial records - denied blob write** treats a rejected financial-container write as Medium severity and groups incidents by storage resource. Its deployment and observed runtime outcome are recorded in [validation](VALIDATION.md).
+[Portal captures and API results](docs/evidence/public/README.md) · [Control matrix](CONTROL_MATRIX.md) · [Validation](VALIDATION.md) · [Architecture](ARCHITECTURE.md) · [KQL](docs/kql/README.md) · [Bicep](infra/)
 
-Purview's external-access rule is configured on one dedicated SharePoint site. Content-specific enforcement, endpoint DLP, USB restrictions, and Defender endpoint telemetry remain **NOT VALIDATED**.
+## What remains
 
-This lab does not prove exfiltration or identify a person behind an IP address. Successful authorized downloads remain possible. It complements DLP, encryption, access controls, EDR, and SIEM monitoring.
+Content-specific SharePoint DLP enforcement remains unproven. The original sharing test stopped at the site's sharing restriction. The [Purview record](PURVIEW_DLP.md) tracks the strict rule and subsequent checks. Defender endpoint correlation and USB/Bluetooth controls remain outside the tested release.
 
-## Evidence and implementation
+A blocked request does not prove every exfiltration path is closed. Authorized downloads remain possible, and resource/time correlation does not identify a person. [Limitations](LIMITATIONS.md) lists the remaining boundaries.
 
-[Control matrix](CONTROL_MATRIX.md) · [Validation](VALIDATION.md) · [Evidence](docs/evidence/public/README.md) · [Architecture](ARCHITECTURE.md) · [KQL](docs/kql/README.md) · [Bicep](infra/) · [Security](SECURITY.md)
+## Related project
 
-The [Honey Token Detection](https://github.com/oasunsec/honey-token-detection) project supplies a separate deception signal. No combined honeytoken-to-DLP or endpoint incident is claimed here.
+[Honey Token Detection](https://github.com/oasunsec/honey-token-detection) records a separate document-access signal. The two projects have separate test evidence.
 
 **Lab state: RETAINED FOR CONTINUED VALIDATION.**

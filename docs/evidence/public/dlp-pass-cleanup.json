@@ -1,0 +1,13 @@
+{
+  "checked_at": "2026-09-08T17:10:38.172186+00:00",
+  "workload_password_credentials": {
+    "reader": 0,
+    "contributor": 0
+  },
+  "temporary_compliance_role_removed": true,
+  "sharepoint_sharing_changed": false,
+  "external_file_permissions_created": false,
+  "external_invitation_sent": false,
+  "user_added_roles_preserved": true,
+  "lab_state": "RETAINED FOR CONTINUED VALIDATION"
+}

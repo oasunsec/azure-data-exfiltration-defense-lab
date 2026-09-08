@@ -1,16 +1,14 @@
-# Entra identity control
+# Entra MFA test
 
-The MFA policy includes only the dedicated lab user. The existing operator and Global Administrator role are excluded. Existing policies were preserved.
+I scoped the MFA Conditional Access policy to one lab user and excluded the existing operator and Global Administrator role. The dedicated test app has delegated User.Read consent for that user.
 
-The [Graph request template](infra/conditional-access.example.json) starts in report-only mode and uses explicit object-ID placeholders. It is a configuration example, not an export containing live identifiers. The retained policy was subsequently enabled after the baseline sign-in.
-
-| Test | Actual result |
+| Test | Result |
 | --- | --- |
-| Dedicated sign-in app, report-only policy | Password grant returned HTTP 200. The sign-in record shows single-factor authentication and `reportOnlyInterrupted` for the lab policy. |
-| Same app/user, policy enabled | Token request rejected with error 50079. The record shows MFA required, Conditional Access failure, and the lab policy's failure result. |
+| Password grant with policy in report-only mode | HTTP 200; the sign-in log recorded single-factor authentication and `reportOnlyInterrupted` for the lab policy. |
+| Same app and user with policy enabled | Error 50079; the log recorded MFA required and Failure for the lab policy. |
 
-The test app has delegated User.Read consent for that user only. A prior Azure CLI client attempt failed with 65002 before policy evaluation; it is not counted as MFA evidence.
+The retained policy is enabled. The [Graph template](infra/conditional-access.example.json) starts in report-only mode and uses placeholders for identity IDs.
 
-The recorded test is a controlled password-grant request. It does not prove completion of an interactive MFA challenge, compliant-device enforcement, phishing-resistant authentication, or location-based enforcement. The sign-in's `CreatedDateTime` is the event time; `TimeGenerated` in the workspace differs because of ingestion timing.
+[Sign-in records](docs/evidence/public/identity-signins.json) · [MFA policy](docs/evidence/public/04-mfa-policy.png) · [Rejected sign-in](docs/evidence/public/05-mfa-signin-result.png) · [Policy evaluation](docs/evidence/public/05b-mfa-policy-result.png)
 
-The [sanitized sign-in records](docs/evidence/public/identity-signins.json) retain policy outcomes while replacing the user with a lab alias. IP and device data remain private. No location or IP is treated as proof of a person's identity.
+This test exercised password-grant rejection, not a completed interactive MFA challenge. `CreatedDateTime` records the sign-in time; workspace `TimeGenerated` differs because of ingestion timing.

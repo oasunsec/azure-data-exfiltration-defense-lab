@@ -21,4 +21,3 @@ try { & $Script -LabSiteUrl 'https://example.invalid/sites/lab' -Mode Enable | O
     result=subprocess.run([PWSH,'-NoProfile','-File',str(path),scenario,str(ROOT/'scripts/configure_dlp.ps1')],capture_output=True,text=True,timeout=30)
     assert result.returncode==0,result.stderr
     assert result.stdout.strip()==expected,result.stdout+result.stderr
-

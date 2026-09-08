@@ -1,7 +1,17 @@
 {
-  "automated_tests": {"passed": 19, "failed": 0},
+  "python_tests": {
+    "passed": 24,
+    "failed": 0
+  },
   "bicep_templates_compiled": 4,
-  "public_file_check_findings": 0,
-  "gitleaks": {"version": "8.30.1", "scope": "all Git refs", "findings": 0},
-  "validated_ci_run": "https://github.com/oasunsec/azure-data-exfiltration-defense-lab/actions/runs/34248467181"
+  "public_file_findings": 0,
+  "full_history_gitleaks_findings": 0,
+  "kql_queries_executed": 5,
+  "kql_http_status": 200,
+  "dlp_guard_ci": "https://github.com/oasunsec/azure-data-exfiltration-defense-lab/actions/runs/34255156250",
+  "latest_workflow": "https://github.com/oasunsec/azure-data-exfiltration-defense-lab/actions/workflows/validate.yml",
+  "dlp_enforcement_validated": false,
+  "recommendation": "NEEDS_MORE_WORK",
+  "public_review_status": "NOT_READY_FOR_PUBLIC",
+  "lab_state": "RETAINED FOR CONTINUED VALIDATION"
 }

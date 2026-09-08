@@ -1,0 +1,7 @@
+{
+  "checked_at": "2026-09-08T16:47:09.604268+00:00",
+  "defender_machine_count": 0,
+  "azure_vm_count": 0,
+  "onboarding_performed": false,
+  "reason": "No dedicated Windows lab endpoint was available. Creating one requires separate setup; the personal workstation was excluded."
+}
