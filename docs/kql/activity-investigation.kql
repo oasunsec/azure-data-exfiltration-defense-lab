@@ -1,0 +1,6 @@
+AzureActivity
+| where TimeGenerated > ago(24h)
+| where ResourceGroup =~ "rg-data-defense-lab"
+| project TimeGenerated, OperationNameValue, ActivityStatusValue,
+    Caller, CallerIpAddress, ResourceId, _ResourceId, CorrelationId, Properties_d
+| order by TimeGenerated asc

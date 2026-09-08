@@ -1,0 +1,11 @@
+{
+  "https_required": true,
+  "minimum_tls_1_2": true,
+  "anonymous_blob_disabled": true,
+  "shared_key_disabled": true,
+  "network_default_deny": true,
+  "network_bypass_none": true,
+  "infrastructure_encryption": true,
+  "blob_encryption": true,
+  "classification_tag": true
+}

@@ -1,0 +1,11 @@
+StorageBlobLogs
+| where TimeGenerated > ago(1h)
+| where ingestion_time() > ago(5m)
+| where _ResourceId contains "/resourceGroups/rg-data-defense-lab/"
+| where Uri contains "/financial-records/"
+| where OperationName == "PutBlob" and StatusCode == "403"
+| extend StorageResource = tostring(split(tolower(_ResourceId), "/blobservices/")[0])
+| summarize FirstAttempt = min(TimeGenerated), LastAttempt = max(TimeGenerated),
+    Attempts = count(), FailureReasons = make_set(StatusText, 10)
+    by StorageResource, RequesterObjectId
+| extend TimeGenerated = LastAttempt

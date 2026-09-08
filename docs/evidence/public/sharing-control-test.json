@@ -1,0 +1,17 @@
+{
+  "result": "Both files blocked by site-wide sharing restriction; this does not validate DLP enforcement.",
+  "tests": [
+    {
+      "file": "Financial_Records_CONFIDENTIAL.docx",
+      "operation": "create anonymous view link",
+      "status": 403,
+      "error_code": "notAllowed"
+    },
+    {
+      "file": "Sharing_Control.txt",
+      "operation": "create anonymous view link",
+      "status": 403,
+      "error_code": "notAllowed"
+    }
+  ]
+}

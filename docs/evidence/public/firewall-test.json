@@ -1,0 +1,8 @@
+{
+  "test": "OAuth reader outside allowed network",
+  "baseline_read": 200,
+  "started": "2026-09-08T06:24:10.563677+00:00",
+  "blocked_status": 403,
+  "error_code": "StorageErrorCode.AUTHORIZATION_FAILURE",
+  "restored_read": 200
+}

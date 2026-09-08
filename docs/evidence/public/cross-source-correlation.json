@@ -1,0 +1,29 @@
+[
+  {
+    "ChangeTime": "2026-09-08T06:24:12.6155348Z",
+    "AccessTime": "2026-09-08T06:24:42.9555046Z",
+    "OperationName": "GetBlob",
+    "StatusText": "AuthorizationFailure",
+    "AuthenticationType": "OAuth",
+    "storage": "LAB-STORAGE-01",
+    "relationship": "same resource, within five minutes; actor attribution not established"
+  },
+  {
+    "ChangeTime": "2026-09-08T06:24:44.4750152Z",
+    "AccessTime": "2026-09-08T06:24:44.5460682Z",
+    "OperationName": "GetBlob",
+    "StatusText": "AuthorizationFailure",
+    "AuthenticationType": "OAuth",
+    "storage": "LAB-STORAGE-01",
+    "relationship": "same resource, within five minutes; actor attribution not established"
+  },
+  {
+    "ChangeTime": "2026-09-08T06:24:44.4750152Z",
+    "AccessTime": "2026-09-08T06:24:54.8255145Z",
+    "OperationName": "GetBlob",
+    "StatusText": "AuthorizationFailure",
+    "AuthenticationType": "OAuth",
+    "storage": "LAB-STORAGE-01",
+    "relationship": "same resource, within five minutes; actor attribution not established"
+  }
+]

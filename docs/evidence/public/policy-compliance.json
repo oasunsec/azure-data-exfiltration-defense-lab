@@ -1,0 +1,26 @@
+{
+  "before": [
+    {
+      "policy": "data-defense-audit-classification",
+      "state": "NonCompliant",
+      "time": "2026-09-08T06:19:48.698794Z"
+    },
+    {
+      "policy": "data-defense-deny-public-blob",
+      "state": "Compliant",
+      "time": "2026-09-08T06:19:48.698293Z"
+    }
+  ],
+  "after": [
+    {
+      "policy": "data-defense-audit-classification",
+      "state": "Compliant",
+      "time": "2026-09-08T15:02:40.093101Z"
+    },
+    {
+      "policy": "data-defense-deny-public-blob",
+      "state": "Compliant",
+      "time": "2026-09-08T15:02:40.092664Z"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "TimeGenerated": "2026-09-08T06:22:44.8303974Z",
+    "CreatedDateTime": "2026-09-08T06:21:24.5615854Z",
+    "AppDisplayName": "Data Defense Lab - Sign-in test",
+    "ResultType": "50079",
+    "ResultDescription": "Due to a configuration change made by your administrator, or because you moved to a new location, you must enroll in multi-factor authentication to access '{identifier}'.",
+    "AuthenticationRequirement": "multiFactorAuthentication",
+    "ConditionalAccessStatus": "failure",
+    "ClientAppUsed": "Mobile Apps and Desktop clients",
+    "IsInteractive": true,
+    "identity": "LAB-USER-01",
+    "policies": [
+      {
+        "name": "Data Defense Lab - Require MFA",
+        "result": "failure"
+      }
+    ]
+  },
+  {
+    "TimeGenerated": "2026-09-08T06:25:36.7692309Z",
+    "CreatedDateTime": "2026-09-08T06:12:42.7294978Z",
+    "AppDisplayName": "Data Defense Lab - Sign-in test",
+    "ResultType": "0",
+    "ResultDescription": "",
+    "AuthenticationRequirement": "singleFactorAuthentication",
+    "ConditionalAccessStatus": "notApplied",
+    "ClientAppUsed": "Mobile Apps and Desktop clients",
+    "IsInteractive": true,
+    "identity": "LAB-USER-01",
+    "policies": [
+      {
+        "name": "Data Defense Lab - Require MFA",
+        "result": "reportOnlyInterrupted"
+      }
+    ]
+  }
+]

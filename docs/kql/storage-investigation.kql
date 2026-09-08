@@ -1,0 +1,8 @@
+StorageBlobLogs
+| where TimeGenerated > ago(24h)
+| where _ResourceId contains "/resourceGroups/rg-data-defense-lab/"
+| where Uri contains "/financial-records/"
+| project TimeGenerated, OperationName, StatusCode, StatusText, AuthenticationType,
+    RequesterObjectId, RequesterAppId, CallerIpAddress, UserAgentHeader,
+    CorrelationId, TlsVersion
+| order by TimeGenerated asc

@@ -1,0 +1,21 @@
+// Resource/time correlation, not proof that the configuration caller accessed the file.
+let Changes = AzureActivity
+| where TimeGenerated > ago(24h)
+| where ResourceGroup =~ "rg-data-defense-lab"
+| where OperationNameValue =~ "MICROSOFT.STORAGE/STORAGEACCOUNTS/WRITE"
+| where ActivityStatusValue =~ "Success"
+| project StorageResource = tolower(coalesce(ResourceId, _ResourceId)), ChangeTime = TimeGenerated,
+    ChangeCorrelationId = CorrelationId;
+StorageBlobLogs
+| where TimeGenerated > ago(24h)
+| where _ResourceId contains "/resourceGroups/rg-data-defense-lab/"
+| where StatusCode == "403" and Uri contains "/financial-records/"
+| extend StorageResource = tostring(split(tolower(_ResourceId), "/blobservices/")[0])
+| project StorageResource, AccessTime = TimeGenerated, OperationName,
+    StatusText, AuthenticationType, RequesterObjectId, CorrelationId
+| join kind=inner Changes on StorageResource
+| where AccessTime between (ChangeTime .. ChangeTime + 5m)
+| summarize arg_max(ChangeTime, *) by CorrelationId
+| project ChangeTime, AccessTime, StorageResource, OperationName,
+    StatusText, AuthenticationType, RequesterObjectId, CorrelationId, ChangeCorrelationId
+| order by AccessTime asc

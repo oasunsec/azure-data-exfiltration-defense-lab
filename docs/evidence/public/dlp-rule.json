@@ -1,0 +1,7 @@
+{
+  "Name": "Data Defense Lab - Credit card external access block",
+  "BlockAccess": true,
+  "BlockAccessScope": "PerUser",
+  "AccessScope": "NotInOrganization",
+  "Disabled": false
+}

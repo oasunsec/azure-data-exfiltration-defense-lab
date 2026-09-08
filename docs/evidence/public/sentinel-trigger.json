@@ -1,0 +1,6 @@
+{
+  "test": "Sentinel detection trigger: denied financial-record write",
+  "time": "2026-09-08T15:22:11.868827+00:00",
+  "status": 403,
+  "error_code": "AuthorizationPermissionMismatch"
+}

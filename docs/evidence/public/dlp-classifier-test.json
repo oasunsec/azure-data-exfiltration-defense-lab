@@ -1,0 +1,17 @@
+[
+  {
+    "Classification": "Credit Card Number",
+    "Count": 1,
+    "Confidence": 65
+  },
+  {
+    "Classification": "Credit Card Number",
+    "Count": 1,
+    "Confidence": 75
+  },
+  {
+    "Classification": "Credit Card Number",
+    "Count": 1,
+    "Confidence": 85
+  }
+]

@@ -1,0 +1,12 @@
+[
+  {
+    "title": "Financial records - denied blob write",
+    "severity": "Medium",
+    "status": "New",
+    "incidentNumber": 19,
+    "createdTimeUtc": "2026-09-08T15:29:55.2166667Z",
+    "firstActivityTimeUtc": "2026-09-08T15:22:13Z",
+    "lastActivityTimeUtc": "2026-09-08T15:22:13Z",
+    "alertCount": 1
+  }
+]

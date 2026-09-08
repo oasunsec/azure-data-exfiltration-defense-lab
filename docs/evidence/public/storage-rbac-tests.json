@@ -1,0 +1,98 @@
+[
+  {
+    "test": "assign-reader-Reader",
+    "http_status": 201,
+    "error_code": null,
+    "time": "Tue, 08 Sep 2026 05:58:57 GMT"
+  },
+  {
+    "test": "assign-reader-BlobReader",
+    "http_status": 201,
+    "error_code": null,
+    "time": "Tue, 08 Sep 2026 05:59:13 GMT"
+  },
+  {
+    "test": "assign-contributor-Contributor",
+    "http_status": 201,
+    "error_code": null,
+    "time": "Tue, 08 Sep 2026 05:59:15 GMT"
+  },
+  {
+    "test": "assign-contributor-BlobContributor",
+    "http_status": 201,
+    "error_code": null,
+    "time": "Tue, 08 Sep 2026 05:59:31 GMT"
+  },
+  {
+    "test": "reader-resource-read",
+    "http_status": 200,
+    "error_code": null,
+    "time": "2026-09-08T06:02:59.788920+00:00"
+  },
+  {
+    "test": "contributor-resource-read",
+    "http_status": 200,
+    "error_code": null,
+    "time": "2026-09-08T06:03:00.162220+00:00"
+  },
+  {
+    "test": "reader-resource-write-denied",
+    "http_status": 403,
+    "error_code": "AuthorizationFailed",
+    "time": "Tue, 08 Sep 2026 05:59:36 GMT"
+  },
+  {
+    "test": "contributor-resource-write-allowed",
+    "http_status": 200,
+    "error_code": null,
+    "time": "Tue, 08 Sep 2026 05:59:37 GMT"
+  },
+  {
+    "test": "contributor-role-grant-denied",
+    "http_status": 403,
+    "error_code": "AuthorizationFailed",
+    "time": "Tue, 08 Sep 2026 05:59:37 GMT"
+  },
+  {
+    "test": "contributor-blob-upload",
+    "http_status": 201
+  },
+  {
+    "test": "reader-blob-read",
+    "http_status": 200
+  },
+  {
+    "test": "reader-blob-write-denied",
+    "http_status": 403,
+    "error_code": "AuthorizationPermissionMismatch"
+  },
+  {
+    "test": "anonymous-blob-read-denied",
+    "http_status": 409,
+    "error_code": "PublicAccessNotPermitted",
+    "time": "2026-09-08T06:03:05.604630+00:00"
+  },
+  {
+    "test": "policy-public-access-denied",
+    "http_status": 403,
+    "error_code": "RequestDisallowedByPolicy",
+    "time": "2026-09-08T06:03:05.925409+00:00"
+  },
+  {
+    "test": "private-key-negative-test",
+    "http_status": 200,
+    "error_code": null,
+    "time": "2026-09-08T06:03:06.178435+00:00"
+  },
+  {
+    "test": "shared-key-read-denied",
+    "http_status": 403,
+    "error_code": "KeyBasedAuthenticationNotPermitted"
+  },
+  {
+    "test": "storage-final-state",
+    "http_status": 200,
+    "error_code": null,
+    "time": "2026-09-08T06:03:08.990400+00:00"
+  }
+]

@@ -1,0 +1,8 @@
+SigninLogs
+| where TimeGenerated > ago(24h)
+| where AppDisplayName == "Data Defense Lab - Sign-in test"
+| project CreatedDateTime, UserId, AppDisplayName, ResultType,
+    ResultDescription, IPAddress, DeviceDetail, UserAgent,
+    AuthenticationRequirement, ConditionalAccessStatus, ConditionalAccessPolicies,
+    CorrelationId
+| order by CreatedDateTime asc
