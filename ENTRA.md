@@ -2,6 +2,8 @@
 
 The MFA policy includes only the dedicated lab user. The existing operator and Global Administrator role are excluded. Existing policies were preserved.
 
+The [Graph request template](infra/conditional-access.example.json) starts in report-only mode and uses explicit object-ID placeholders. It is a configuration example, not an export containing live identifiers. The retained policy was subsequently enabled after the baseline sign-in.
+
 | Test | Actual result |
 | --- | --- |
 | Dedicated sign-in app, report-only policy | Password grant returned HTTP 200. The sign-in record shows single-factor authentication and `reportOnlyInterrupted` for the lab policy. |

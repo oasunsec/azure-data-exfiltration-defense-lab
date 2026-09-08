@@ -1,0 +1,7 @@
+{
+  "automated_tests": {"passed": 19, "failed": 0},
+  "bicep_templates_compiled": 4,
+  "public_file_check_findings": 0,
+  "gitleaks": {"version": "8.30.1", "scope": "all Git refs", "findings": 0},
+  "validated_ci_run": "https://github.com/oasunsec/azure-data-exfiltration-defense-lab/actions/runs/34248467181"
+}

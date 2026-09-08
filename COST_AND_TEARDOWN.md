@@ -11,6 +11,6 @@ The resource group, storage account, private container, policies, dedicated iden
 | Entra / Purview / Defender | Existing Microsoft 365 E5 tenant licensing; no new license purchase claimed |
 | Endpoint VM | No VM deployed for this evidence set |
 
-No measured cost saving or final billed total is claimed. Diagnostic collection includes tenant identity and subscription Activity sources, so costs are not limited to the few test rows. Blob soft-delete duration is not the workspace retention setting.
+No measured cost saving or final billed total is claimed. Diagnostic collection includes tenant identity and subscription Activity sources, so costs are not limited to the few test rows. The workspace configuration recorded 30 days of retention; blob/container soft delete is seven days.
 
 Temporary credentials and administrative elevation are cleanup targets; the lab resources are not. No teardown was run. Future deletion requires a separate decision, evidence export, retention review, and explicit handling of the resource lock.

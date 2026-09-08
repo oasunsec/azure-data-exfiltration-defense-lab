@@ -17,17 +17,17 @@ Content-specific SharePoint DLP enforcement; a DLP audit event or Sentinel DLP c
 
 ## Tests
 
-**19 tests passed locally.** Bicep compilation, full-history secret scan, and pushed CI are release checks recorded separately below. Automated tests validate the repository's checks and sample; they do not substitute for live enforcement evidence.
+**19 tests passed locally.** All four Bicep templates compiled. [GitHub Actions run 34248467181](https://github.com/oasunsec/azure-data-exfiltration-defense-lab/actions/runs/34248467181) passed tests, public-file checks, Bicep compilation, and the full-history Gitleaks scan. Automated tests validate the repository's checks and sample; they do not substitute for live enforcement evidence.
 
 ## Azure and identity
 
 Storage uses Microsoft-managed keys plus infrastructure encryption, TLS 1.2, default-deny networking, disabled anonymous/shared-key access, and scoped OAuth roles. Encryption/TLS configuration is verified; cryptographic internals and protocol downgrade probes were not tested. No Owner workload role was added.
 
-MFA is enabled only for the dedicated test user, with administrator exclusions. The test app's delegated permission is User.Read for that user. Temporary test credentials and compliance elevation are removed during final cleanup while the lab configuration remains.
+MFA is enabled only for the dedicated test user, with administrator exclusions. The test app's delegated permission is User.Read for that user. Both workload identities have zero password credentials after cleanup. The temporary compliance role assignment was removed; user-added permissions and lab configuration were preserved.
 
 ## Purview and Defender
 
-The external-access DLP rule is configured on one site. Both sharing tests were rejected by the site's sharing restriction. Defender licensing is available, but the endpoint inventory was empty. No endpoint result is claimed.
+The external-access DLP rule is configured on one site; the last recorded distribution state was Pending. A separate classifier test detected one credit-card match at confidence 65, 75, and 85 in synthetic text. Both sharing tests were rejected by the site's sharing restriction. Defender licensing is available, but the endpoint inventory was empty. No endpoint result is claimed.
 
 ## Sentinel
 
@@ -35,7 +35,7 @@ The enabled Medium denied-write analytic produced a native alert and incident. A
 
 ## Evidence and security
 
-Public JSON uses selected fields and aliases. Three storage portal captures have been cropped and reviewed; additional portal captures remain under review. Raw screenshots and API responses are ignored. Publication requires the final history scan and privacy checks.
+Public JSON uses selected fields and aliases. Six storage and MFA portal captures are cropped to their controls; sign-in request identifiers are redacted. Raw screenshots and API responses are ignored. The initial history scan and CI scan found no secrets, and the public-file privacy check found no issues.
 
 ## Recommendation
 
