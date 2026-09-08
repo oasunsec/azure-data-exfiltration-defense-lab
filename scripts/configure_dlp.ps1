@@ -10,7 +10,7 @@ if (-not (Get-Command Get-DlpCompliancePolicy -ErrorAction SilentlyContinue)) {
   throw 'Connect-IPPSSession with DLP management permissions is required.'
 }
 $policyName = 'Data Defense Lab - Financial external access'
-$ruleName = 'Data Defense Lab - Credit card external access block'
+$ruleName = 'Data Defense Lab - Strict financial access restriction'
 $policy = Get-DlpCompliancePolicy | Where-Object Name -eq $policyName
 if ($policy) {
   $locations = @($policy.SharePointLocation | ForEach-Object { $_.Name.TrimEnd('/') })
@@ -25,11 +25,22 @@ $rule = Get-DlpComplianceRule -Policy $policyName | Where-Object Name -eq $ruleN
 if (-not $rule) {
   New-DlpComplianceRule -Name $ruleName -Policy $policyName `
     -ContentContainsSensitiveInformation @(@{Name='Credit Card Number';minCount='1';confidencelevel='High'}) `
-    -AccessScope NotInOrganization -BlockAccess $true -BlockAccessScope PerUser `
-    -NotifyUser LastModifier -NotifyAllowOverride $false -GenerateAlert $true -ErrorAction Stop | Out-Null
+    -AccessScope NotInOrganization -BlockAccess $true -BlockAccessScope All `
+    -NotifyUser LastModifier -GenerateAlert $true -ErrorAction Stop | Out-Null
 }
 $confirmed = Get-DlpComplianceRule -Identity $ruleName -ErrorAction Stop
-if (-not $confirmed.BlockAccess -or $confirmed.Disabled) { throw 'Active block rule was not confirmed.' }
+# NotifyAllowOverride is an enum array: $false enables FalsePositive overrides.
+$overrides = @($confirmed.NotifyAllowOverride | Where-Object { $null -ne $_ })
+$classifiers = @($confirmed.ContentContainsSensitiveInformation)
+if (-not $confirmed.BlockAccess -or $confirmed.Disabled -or
+    [string]$confirmed.BlockAccessScope -ne 'All' -or
+    [string]$confirmed.AccessScope -ne 'NotInOrganization' -or $overrides.Count -ne 0 -or
+    $classifiers.Count -ne 1 -or $classifiers[0].name -ne 'Credit Card Number' -or
+    [int]$classifiers[0].mincount -ne 1 -or [int]$classifiers[0].minconfidence -ne 85) {
+  throw 'Strict external-sharing rule and classifier were not confirmed. Policy mode was not changed.'
+}
 Set-DlpCompliancePolicy -Identity $policyName -Mode $Mode -ErrorAction Stop
-Get-DlpCompliancePolicy -Identity $policyName -DistributionDetail
+$saved = Get-DlpCompliancePolicy -Identity $policyName -DistributionDetail
+if ([string]$saved.Mode -ne $Mode) { throw 'The requested policy mode was not saved.' }
+$saved
 Get-DlpComplianceRule -Identity $ruleName
