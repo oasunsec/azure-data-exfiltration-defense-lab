@@ -17,7 +17,7 @@ Content-specific SharePoint DLP enforcement; a DLP audit event or Sentinel DLP c
 
 ## Tests
 
-**26 tests passed locally.** All four Bicep templates compiled. [GitHub Actions run 34255156250](https://github.com/oasunsec/azure-data-exfiltration-defense-lab/actions/runs/34255156250) passed tests, public-file checks, Bicep compilation, and the full-history Gitleaks scan. This CI run includes the DLP activation regression tests. The latest documentation commit is checked by the same [workflow](https://github.com/oasunsec/azure-data-exfiltration-defense-lab/actions/workflows/validate.yml).
+**30 tests passed locally.** All four Bicep templates compiled. [GitHub Actions run 34262698507](https://github.com/oasunsec/azure-data-exfiltration-defense-lab/actions/runs/34262698507) passed tests, public-file checks, Bicep compilation, and the full-history Gitleaks scan. This CI run includes the DLP activation regression tests. The latest documentation commit is checked by the same [workflow](https://github.com/oasunsec/azure-data-exfiltration-defense-lab/actions/workflows/validate.yml).
 
 ## Azure and identity
 

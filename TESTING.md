@@ -1,6 +1,6 @@
 # Tests and live checks
 
-The automated suite checks the storage baseline, privacy filters, synthetic DOCX generation, and DLP activation safeguards. The DLP tests execute PowerShell against mocked cmdlets: a valid strict rule can be enabled; an override, weaker classifier, wrong site, external-only block, or invalid alert recipient fails the gate.
+The automated suite checks the storage baseline, privacy filters, synthetic DOCX generation, and DLP activation safeguards. The DLP tests execute PowerShell against mocked cmdlets: a valid strict rule can be enabled; an override, weaker classifier, wrong site, external-only block, or invalid alert recipient fails the gate. The same checks accept the equivalent portal-generated advanced rule and reject an OR expression, an extra condition, or a weaker classifier.
 
 ```sh
 python -m pip install -r requirements.txt
