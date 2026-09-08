@@ -1,0 +1,12 @@
+{
+  "CheckedAt": "2026-09-08T18:21:20.0017672Z",
+  "RecipientMatchesLabAdmin": true,
+  "Distribution": "Pending",
+  "OldRuleCount": 1,
+  "OldRuleModes": [
+    "PendingDeletion"
+  ],
+  "BlockAccess": true,
+  "BlockAccessScope": "All",
+  "Overrides": 0
+}

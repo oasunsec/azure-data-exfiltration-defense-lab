@@ -1,5 +1,7 @@
 param(
   [Parameter(Mandatory)][uri]$LabSiteUrl,
+  [Parameter(Mandatory)]
+  [ValidatePattern('^[^@\s]+@[^@\s]+\.[^@\s]+$')][string]$AlertRecipient,
   [ValidateSet('TestWithoutNotifications','Enable')][string]$Mode = 'TestWithoutNotifications'
 )
 $ErrorActionPreference = 'Stop'
@@ -26,18 +28,20 @@ if (-not $rule) {
   New-DlpComplianceRule -Name $ruleName -Policy $policyName `
     -ContentContainsSensitiveInformation @(@{Name='Credit Card Number';minCount='1';confidencelevel='High'}) `
     -AccessScope NotInOrganization -BlockAccess $true -BlockAccessScope All `
-    -NotifyUser LastModifier -GenerateAlert $true -ErrorAction Stop | Out-Null
+    -NotifyUser LastModifier -GenerateAlert $AlertRecipient -ErrorAction Stop | Out-Null
 }
 $confirmed = Get-DlpComplianceRule -Identity $ruleName -ErrorAction Stop
 # NotifyAllowOverride is an enum array: $false enables FalsePositive overrides.
 $overrides = @($confirmed.NotifyAllowOverride | Where-Object { $null -ne $_ })
 $classifiers = @($confirmed.ContentContainsSensitiveInformation)
+$recipients = @($confirmed.GenerateAlert)
 if (-not $confirmed.BlockAccess -or $confirmed.Disabled -or
     [string]$confirmed.BlockAccessScope -ne 'All' -or
     [string]$confirmed.AccessScope -ne 'NotInOrganization' -or $overrides.Count -ne 0 -or
     $classifiers.Count -ne 1 -or $classifiers[0].name -ne 'Credit Card Number' -or
-    [int]$classifiers[0].mincount -ne 1 -or [int]$classifiers[0].minconfidence -ne 85) {
-  throw 'Strict external-sharing rule and classifier were not confirmed. Policy mode was not changed.'
+    [int]$classifiers[0].mincount -ne 1 -or [int]$classifiers[0].minconfidence -ne 85 -or
+    $recipients.Count -ne 1 -or [string]$recipients[0] -ne $AlertRecipient) {
+  throw 'Strict rule, classifier, and alert recipient were not confirmed. Policy mode was not changed.'
 }
 Set-DlpCompliancePolicy -Identity $policyName -Mode $Mode -ErrorAction Stop
 $saved = Get-DlpCompliancePolicy -Identity $policyName -DistributionDetail

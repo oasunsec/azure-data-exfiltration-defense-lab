@@ -12,13 +12,18 @@ Screenshots are genuine portal captures cropped to the relevant controls. JSON c
 | [MFA policy](04-mfa-policy.png) | On, one included user, administrator exclusions, MFA required |
 | [MFA rejection](05-mfa-signin-result.png) | Actual sign-in error 50079 and MFA requirement; request identifiers redacted |
 | [Policy evaluation](05b-mfa-policy-result.png) | The lab policy returned Failure for that sign-in |
+| [Strict DLP rule](06-purview-strict-rule.png) | Enabled rule, external-sharing condition, and restriction summary |
+| [DLP classifier and action](06b-purview-classifier-action.png) | Credit Card Number, high confidence, minimum 1, and Block everyone |
+| [DLP site scope](06c-purview-site-scope.png) | SharePoint selected with one site; other listed workloads unselected |
 | [Storage/RBAC requests](storage-rbac-tests.json) | Allowed reads/uploads and rejected write/grant/key/anonymous tests |
 | [Configuration check](storage-configuration-check.json) | Saved ARM response passed the baseline checks |
 | [Firewall behavior](firewall-test.json) | Read allowed, then denied, then restored |
 | [Policy compliance](policy-compliance.json) | Classification remediation and custom-policy results |
 | [Identity sign-ins](identity-signins.json) | Report-only success and enforced MFA rejection |
-| [Sharing control](sharing-control-test.json) | Both files rejected by the site restriction |
+| [Sharing control](sharing-control-test.json) | Anonymous-link requests rejected for both files; authenticated guest access was not tested |
 | [Original DLP rule](dlp-rule.json) | Earlier external-user rule, retained as baseline evidence |
+| [DLP alert readback](dlp-alert-readback.json) | Corrected recipient confirmed; block all, zero overrides; distribution still Pending |
+| [Site sharing configuration](sharepoint-sharing-configuration.json) | Authenticated guest sharing already enabled; anonymous sharing disabled; no site change needed |
 | [Strict DLP readiness](dlp-strict-readiness.json) | Single-site scope, high-confidence classifier, strict block, no overrides, distribution state |
 | [Activity Explorer query](dlp-activity-query.json) | Successful query with zero records in its 24-hour window |
 | [Current cleanup](dlp-pass-cleanup.json) | Temporary compliance role removed; workload secrets zero; sharing unchanged |

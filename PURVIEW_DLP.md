@@ -4,7 +4,7 @@
 
 I scoped **Data Defense Lab - Financial external access** to the dedicated SharePoint lab site. Its rule, **Data Defense Lab - Strict financial access restriction**, matches at least one Credit Card Number at high confidence (85) when content is shared outside the organization.
 
-The action blocks access except for the owner, last modifier, and site administrator. User overrides are disabled. The [PowerShell script](scripts/configure_dlp.ps1) checks the saved scope, classifier, block action, and override settings before enabling the policy.
+The action blocks access except for the owner, last modifier, and site administrator. User overrides are disabled. The [PowerShell script](scripts/configure_dlp.ps1) requires an SMTP address in `AlertRecipient` and checks the saved recipient, scope, classifier, block action, and override settings before enabling the policy.
 
 ## Test results
 
@@ -15,7 +15,7 @@ The action blocks access except for the owner, last modifier, and site administr
 | Strict rule readback | Block enabled, one site, confidence 85, no overrides | [Readiness check](docs/evidence/public/dlp-strict-readiness.json) |
 | Content-specific file enforcement | NOT VALIDATED | No qualifying DLP block event collected |
 
-The original sharing restriction stopped both files before their content could make a difference. The classifier response confirms a text match, not enforcement on a SharePoint file. The strict rule's latest distribution state is recorded in the readiness check; sharing tests require successful distribution. At the final check, distribution was Pending and the earlier rule was PendingDeletion. SharePoint PowerShell authentication did not complete, so site sharing remained unchanged and no guest permissions were created.
+The original requests attempted anonymous links. An authenticated SharePoint readback later confirmed that the lab site already permits authenticated guest sharing (`ExternalUserSharingOnly`); no sharing change was needed. The classifier response confirms a text match, not enforcement on a SharePoint file. At the September 8, 18:21 UTC check, policy distribution was Pending and the earlier rule was PendingDeletion. No guest test ran. The alert recipient was corrected in the portal; API readback confirmed the dedicated lab administrator and zero overrides.
 
 A controlled external guest test must establish that the nonsensitive file is accessible while the financial file is restricted by this rule. The external test account must not be an exempt owner. Any temporary site-sharing change and guest file permissions are removed after the test.
 
