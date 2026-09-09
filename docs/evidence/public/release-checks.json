@@ -8,7 +8,7 @@
   "full_history_gitleaks_findings": 0,
   "kql_queries_executed": 5,
   "kql_http_status": 200,
-  "dlp_guard_ci": "https://github.com/oasunsec/azure-data-exfiltration-defense-lab/actions/runs/34397367873",
+  "dlp_guard_ci": "https://github.com/oasunsec/azure-data-exfiltration-defense-lab/actions/runs/34405888282",
   "latest_workflow": "https://github.com/oasunsec/azure-data-exfiltration-defense-lab/actions/workflows/validate.yml",
   "fresh_guest_behavior": "control accessible; financial file blocked by organizational-policy page at 2026-09-09T20:34:58Z",
   "fresh_activity_explorer_records": 0,
