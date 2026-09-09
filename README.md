@@ -42,6 +42,4 @@ A blocked request does not prove every exfiltration path is closed. Authorized d
 
 ## Related project
 
-[Honey Token Detection](https://github.com/oasunsec/honey-token-detection) records a separate document-access signal. The two projects have separate test evidence.
-
 **Lab state: RETAINED FOR CONTINUED VALIDATION.**

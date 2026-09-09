@@ -9,6 +9,6 @@
 - The Sentinel analytic groups by storage resource and can combine different callers. Native grouping is not exact request deduplication. Events delayed more than an hour can miss its scheduled lookback.
 - The account has a public endpoint with an IP firewall, not a private endpoint. Microsoft-managed keys are used; customer-managed key lifecycle was not tested.
 - Other inherited Azure Policy findings remain outside the two custom-policy tests. The project does not claim complete tenant compliance.
-- The linked honeytoken project has separate evidence. Document external content can be blocked, offline opens may not fire, and scanners can trigger callbacks. A callback proves neither exfiltration nor who opened a file.
+- Document external content can be blocked, offline opens may not fire, and scanners can trigger callbacks. A callback proves neither exfiltration nor who opened a file.
 
 These controls complement DLP, access controls, encryption, EDR, file auditing, and SIEM monitoring. Stronger attribution requires those sources to be correlated using actual events.
