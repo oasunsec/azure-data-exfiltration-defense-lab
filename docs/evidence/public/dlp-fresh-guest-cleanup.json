@@ -1,0 +1,14 @@
+{
+  "CheckedAtUtc": "2026-09-09T21:03:13Z",
+  "GuestDirectory": "removed",
+  "GuestFilePermissions": {
+    "Sharing_Control.txt": "removed and verified absent",
+    "Financial_Records_CONFIDENTIAL.docx": "removed and verified absent"
+  },
+  "OrphanSiteUser": "removed via supported SharePoint PowerShell",
+  "TemporarySiteCollectionAdmin": "revoked",
+  "SiteSharingChanged": false,
+  "TenantSharingChanged": false,
+  "DlpRulesChanged": false,
+  "LabState": "retained for continued validation"
+}

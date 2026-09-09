@@ -1,0 +1,18 @@
+{
+  "ObservedAtUtc": "2026-09-09T20:34:58Z",
+  "Identity": "sanitized external guest",
+  "AuditIngestion": "enabled before test",
+  "ControlFile": {
+    "Name": "Sharing_Control.txt",
+    "Result": "accessible",
+    "Evidence": "redacted screenshot"
+  },
+  "FinancialFile": {
+    "Name": "Financial_Records_CONFIDENTIAL.docx",
+    "Result": "blocked",
+    "Page": "SharePoint organizational-policy access-denied",
+    "PurviewRuleNamedOnPage": false,
+    "Evidence": "redacted screenshot"
+  },
+  "Interpretation": "Behavioral restriction observed; the page did not identify the enforcing Purview rule or action."
+}

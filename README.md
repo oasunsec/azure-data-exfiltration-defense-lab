@@ -28,7 +28,7 @@ flowchart LR
 | MFA | Password-only authentication succeeded in report-only mode and failed when the lab MFA policy was enabled. |
 | Sentinel | A denied write produced a native Medium alert and incident. |
 | Investigation | I correlated three denied reads with preceding changes on the same storage account. |
-| SharePoint DLP | An authenticated guest opened the nonsensitive control file; the synthetic financial file was blocked by an organizational-policy page. Purview telemetry did not identify the strict rule. |
+| SharePoint DLP | In the fresh post-audit run at 20:34:58 UTC, an authenticated guest opened the nonsensitive control file; the synthetic financial file was blocked by an organizational-policy page. Purview telemetry did not identify the strict rule. |
 
 ## Evidence
 
@@ -36,7 +36,7 @@ flowchart LR
 
 ## What remains
 
-The post-audit guest run demonstrated a content-specific access restriction, but the page and the subsequent Purview queries did not identify the strict rule. The [Purview record](PURVIEW_DLP.md) keeps that distinction explicit. Defender endpoint correlation and USB/Bluetooth controls remain outside the tested release.
+The fresh post-audit guest run demonstrated an access restriction, but the page and the subsequent Purview queries did not identify the strict rule or an enforcement action. The [Purview record](PURVIEW_DLP.md) keeps that distinction explicit. Defender endpoint correlation and USB/Bluetooth controls remain outside the tested release.
 
 A blocked request does not prove every exfiltration path is closed. Authorized downloads remain possible, and resource/time correlation does not identify a person. [Limitations](LIMITATIONS.md) lists the remaining boundaries.
 

@@ -1,5 +1,5 @@
 {
-  "CheckedAt": "2026-09-09T18:33:09Z",
+  "CheckedAt": "2026-09-09T20:22:09Z",
   "Policy": "Data Defense Lab - Financial external access",
   "Mode": "Enable",
   "Distribution": "Success",
@@ -16,5 +16,5 @@
   "PreviousRuleMode": "PendingDeletion",
   "EnforcementTestPerformed": true,
   "EnforcementTelemetryValidated": false,
-  "BehavioralTest": "Authenticated guest control file accessible; financial file blocked by an organizational-policy page"
+  "BehavioralTest": "Fresh authenticated guest control file accessible; financial file blocked by an organizational-policy page"
 }

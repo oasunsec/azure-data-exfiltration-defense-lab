@@ -11,10 +11,11 @@
 - A rejected write generated a native Medium Sentinel alert and incident 19.
 - Site-level sharing rejected anonymous links for both test files.
 - After unified audit ingestion was enabled, an authenticated guest opened `Sharing_Control.txt`; `Financial_Records_CONFIDENTIAL.docx` returned a SharePoint organizational-policy access-denied page.
+- A fresh post-audit run at 20:34:58 UTC reproduced the comparison: the control file opened and the financial file returned the same organizational-policy page. The redacted captures are listed in the public evidence index.
 
 ## Not proven
 
-An authoritative DLP record naming **Data Defense Lab - Strict financial access restriction**; a Sentinel DLP connector; endpoint DLP; USB/Bluetooth enforcement; Defender process/file/network telemetry; successful interactive MFA; a combined identity-to-storage-to-DLP scenario; exact actor attribution; prevention of every exfiltration path.
+An authoritative DLP record naming **Data Defense Lab - Strict financial access restriction** and its enforcement action. Activity Explorer completed with zero rows in the fresh window; Exchange Online `Search-UnifiedAuditLog` returned no usable result and a `BadRequest` warning; the available DLP reports returned zero rows. A Sentinel DLP connector; endpoint DLP; USB/Bluetooth enforcement; Defender process/file/network telemetry; successful interactive MFA; a combined identity-to-storage-to-DLP scenario; exact actor attribution; prevention of every exfiltration path also remain unproven.
 
 ## Tests
 
@@ -28,7 +29,7 @@ MFA is enabled only for the dedicated test user, with administrator exclusions. 
 
 ## Purview and Defender
 
-The strict DLP rule targets one site, requires a high-confidence Credit Card Number match and external sharing, blocks access except for the owner, last modifier, and site administrator, and has no override. A fresh readback reports policy distribution `Success`, the strict rule `Enforce`, and the retired rule still `PendingDeletion`. Unified audit ingestion was enabled before the controlled guest run. The guest opened the nonsensitive control file and received an organizational-policy block for the synthetic financial file; the page did not name a DLP rule. Activity Explorer and the available DLP reports returned no authoritative record during the observation window. The [post-audit behavior](docs/evidence/public/dlp-post-audit-test.json) and [telemetry result](docs/evidence/public/dlp-post-audit-telemetry.json) keep those results separate. Defender and Azure VM inventories were empty; endpoint work remains outside this release.
+The strict DLP rule targets one site, requires a high-confidence Credit Card Number match and external sharing, blocks access except for the owner, last modifier, and site administrator, and has no override. A fresh readback reports policy distribution `Success`, the strict rule `Enforce`, and the retired rule still `PendingDeletion`. Unified audit ingestion was enabled before the controlled guest run. In the fresh run at 20:34:58 UTC, the guest opened the nonsensitive control file and received an organizational-policy block for the synthetic financial file; the page did not name a DLP rule. Activity Explorer returned zero rows, Exchange Online audit search returned no usable result with a `BadRequest` warning, and the available DLP reports returned zero rows. The [fresh behavior](docs/evidence/public/dlp-fresh-guest-test.json) and [fresh telemetry](docs/evidence/public/dlp-fresh-guest-telemetry.json) keep those results separate. Defender and Azure VM inventories were empty; endpoint work remains outside this release.
 
 ## Sentinel
 

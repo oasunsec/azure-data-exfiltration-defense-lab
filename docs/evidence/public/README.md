@@ -23,6 +23,10 @@ Screenshots are genuine portal captures cropped to the relevant controls. JSON c
 | [Sharing control](sharing-control-test.json) | Anonymous-link requests rejected for both files by the site boundary |
 | [Post-audit guest behavior](dlp-post-audit-test.json) | Control file opened; financial file returned an organizational-policy access-denied page |
 | [Post-audit telemetry](dlp-post-audit-telemetry.json) | Audit ingestion enabled, but no authoritative record named the strict DLP rule |
+| [Fresh guest behavior](dlp-fresh-guest-test.json) | At 20:34:58 UTC the control file opened and the financial file was blocked by the organizational-policy page; no rule name was shown |
+| [Fresh guest screenshots](dlp-fresh-rerun2-control.png, dlp-fresh-rerun2-financial-block.png) | Redacted crops of the control-file result and financial-file block |
+| [Fresh telemetry](dlp-fresh-guest-telemetry.json) | Activity Explorer completed with zero records; Unified Audit returned no usable result and a BadRequest warning; DLP reports returned zero rows |
+| [Fresh guest cleanup](dlp-fresh-guest-cleanup.json) | Guest, item permissions, and temporary site administration removed; original sharing and DLP settings preserved |
 | [Post-audit cleanup](dlp-post-audit-cleanup.json) | Guest, item permissions, orphan site user, and temporary administration removed; sharing and DLP rules unchanged |
 | [Original DLP rule](dlp-rule.json) | Earlier external-user rule, retained as baseline evidence |
 | [DLP alert readback](dlp-alert-readback.json) | Corrected recipient confirmed; block all, zero overrides; fresh policy distribution readback is Success |

@@ -1,0 +1,38 @@
+{
+  "BehaviorWindow": {
+    "StartUtc": "2026-09-09T20:30:00Z",
+    "ObservedFinancialBlockUtc": "2026-09-09T20:34:58Z"
+  },
+  "PolicyReadback": {
+    "Policy": "Data Defense Lab - Financial external access",
+    "Distribution": "Success",
+    "StrictRule": "Data Defense Lab - Strict financial access restriction",
+    "StrictRuleMode": "Enforce",
+    "RetiredRuleMode": "PendingDeletion"
+  },
+  "ActivityExplorer": {
+    "WindowEndUtc": "2026-09-09T20:51:15Z",
+    "ResultCode": "Success",
+    "RecordCount": 0,
+    "TotalResultCount": 0,
+    "StrictRuleNamed": false,
+    "EnforcementActionNamed": false
+  },
+  "UnifiedAudit": {
+    "WindowEndUtc": "2026-09-09T20:40:00Z",
+    "Attempted": true,
+    "UsableResult": false,
+    "Count": 0,
+    "ServiceWarning": "BadRequest"
+  },
+  "DlpReports": {
+    "WindowEndUtc": "2026-09-09T20:40:00Z",
+    "Get-DlpDetailReport": 0,
+    "Get-DlpDetectionsReport": 0,
+    "Get-DlpIncidentDetailReport": 0
+  },
+  "DlpRuleNamed": false,
+  "EnforcementActionNamed": false,
+  "DlpEnforcementEstablished": false,
+  "Interpretation": "No authoritative post-audit record naming the strict rule and enforcement action was returned."
+}
