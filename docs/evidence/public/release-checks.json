@@ -8,12 +8,11 @@
   "full_history_gitleaks_findings": 0,
   "kql_queries_executed": 5,
   "kql_http_status": 200,
-  "dlp_guard_ci": "https://github.com/oasunsec/azure-data-exfiltration-defense-lab/actions/runs/34397195534",
+  "dlp_guard_ci": "https://github.com/oasunsec/azure-data-exfiltration-defense-lab/actions/runs/34397367873",
   "latest_workflow": "https://github.com/oasunsec/azure-data-exfiltration-defense-lab/actions/workflows/validate.yml",
   "dlp_enforcement_validated": false,
   "post_audit_guest_cleanup": "verified",
   "recommendation": "NEEDS_MORE_WORK",
   "public_review_status": "NOT_READY_FOR_PUBLIC",
-  "lab_state": "RETAINED FOR CONTINUED VALIDATION",
-  "latest_commit": "b19c14ecfe21345b5615339ce381b8fa40351e45"
-}\n
+  "lab_state": "RETAINED FOR CONTINUED VALIDATION"
+}
