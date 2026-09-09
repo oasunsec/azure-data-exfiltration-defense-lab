@@ -1,7 +1,7 @@
 {
-  "CheckedAt": "2026-09-08T18:21:20.0017672Z",
+  "CheckedAt": "2026-09-09T18:33:09Z",
   "RecipientMatchesLabAdmin": true,
-  "Distribution": "Pending",
+  "Distribution": "Success",
   "OldRuleCount": 1,
   "OldRuleModes": [
     "PendingDeletion"

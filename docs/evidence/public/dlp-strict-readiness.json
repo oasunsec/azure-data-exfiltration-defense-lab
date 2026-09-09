@@ -1,8 +1,8 @@
 {
-  "CheckedAt": "2026-09-08T17:10:05.4289326Z",
+  "CheckedAt": "2026-09-09T18:33:09Z",
   "Policy": "Data Defense Lab - Financial external access",
   "Mode": "Enable",
-  "Distribution": "Pending",
+  "Distribution": "Success",
   "DedicatedSiteOnly": true,
   "Rule": "Data Defense Lab - Strict financial access restriction",
   "Disabled": false,
@@ -14,5 +14,7 @@
   "MinimumConfidence": "85",
   "MinimumCount": "1",
   "PreviousRuleMode": "PendingDeletion",
-  "EnforcementTestPerformed": false
+  "EnforcementTestPerformed": true,
+  "EnforcementTelemetryValidated": false,
+  "BehavioralTest": "Authenticated guest control file accessible; financial file blocked by an organizational-policy page"
 }

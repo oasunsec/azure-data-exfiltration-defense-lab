@@ -1,0 +1,14 @@
+{
+  "checked_at": "2026-09-09T19:42:44Z",
+  "guest_directory": "removed",
+  "guest_file_permissions": {
+    "Sharing_Control.txt": "removed",
+    "Financial_Records_CONFIDENTIAL.docx": "removed"
+  },
+  "orphan_site_user": "removed via supported SharePoint PowerShell",
+  "temporary_site_collection_admin": "revoked",
+  "temporary_sharepoint_administrator_role": "removed",
+  "site_or_tenant_sharing_changed": false,
+  "dlp_rules_changed": false,
+  "lab_state": "retained for continued validation"
+}

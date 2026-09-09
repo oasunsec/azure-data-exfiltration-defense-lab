@@ -20,9 +20,12 @@ Screenshots are genuine portal captures cropped to the relevant controls. JSON c
 | [Firewall behavior](firewall-test.json) | Read allowed, then denied, then restored |
 | [Policy compliance](policy-compliance.json) | Classification remediation and custom-policy results |
 | [Identity sign-ins](identity-signins.json) | Report-only success and enforced MFA rejection |
-| [Sharing control](sharing-control-test.json) | Anonymous-link requests rejected for both files; authenticated guest access was not tested |
+| [Sharing control](sharing-control-test.json) | Anonymous-link requests rejected for both files by the site boundary |
+| [Post-audit guest behavior](dlp-post-audit-test.json) | Control file opened; financial file returned an organizational-policy access-denied page |
+| [Post-audit telemetry](dlp-post-audit-telemetry.json) | Audit ingestion enabled, but no authoritative record named the strict DLP rule |
+| [Post-audit cleanup](dlp-post-audit-cleanup.json) | Guest, item permissions, orphan site user, and temporary administration removed; sharing and DLP rules unchanged |
 | [Original DLP rule](dlp-rule.json) | Earlier external-user rule, retained as baseline evidence |
-| [DLP alert readback](dlp-alert-readback.json) | Corrected recipient confirmed; block all, zero overrides; distribution still Pending |
+| [DLP alert readback](dlp-alert-readback.json) | Corrected recipient confirmed; block all, zero overrides; fresh policy distribution readback is Success |
 | [Site sharing configuration](sharepoint-sharing-configuration.json) | Authenticated guest sharing already enabled; anonymous sharing disabled; no site change needed |
 | [Strict DLP readiness](dlp-strict-readiness.json) | Single-site scope, high-confidence classifier, strict block, no overrides, distribution state |
 | [Activity Explorer query](dlp-activity-query.json) | Successful query with zero records in its 24-hour window |

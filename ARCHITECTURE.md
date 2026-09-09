@@ -24,9 +24,9 @@ flowchart TD
 
 ## Separate SharePoint path
 
-The dedicated SharePoint site contains the same synthetic financial sample and a nonsensitive sharing-control file. A Purview rule targets credit-card content shared outside the organization. The site's sharing restriction rejected both anonymous-link attempts before a distinct DLP effect could be established.
+The dedicated SharePoint site contains the same synthetic financial sample and a nonsensitive sharing-control file. A Purview rule targets credit-card content shared outside the organization. An authenticated guest opened the control file after audit ingestion was enabled; the financial file returned an organizational-policy access block. The page did not name the Purview rule, and no authoritative DLP record was returned in the observation window.
 
-This SharePoint path is separate from Blob Storage and the Entra password-grant test. Neither SharePoint DLP events nor Defender endpoint events were correlated into Sentinel in the recorded run.
+This SharePoint path is separate from Blob Storage and the Entra password-grant test. No SharePoint DLP event or Defender endpoint event was correlated into Sentinel in the recorded run.
 
 ## Trust boundaries
 

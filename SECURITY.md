@@ -6,7 +6,7 @@ The storage endpoint is reachable only from the configured IP allowlist for data
 
 Temporary test credentials are removed after use. No Owner assignment is required by the workload identities. Existing tenant administration is used only for provisioning; retained workloads use scoped data permissions.
 
-The Conditional Access policy targets one lab user and excludes administrators. Site-level sharing restrictions were preserved; no external invitation or guest file permission was created during the strict-rule pass. The temporary compliance administration assignment used for Purview configuration was removed after validation. User-added permissions were preserved.
+The Conditional Access policy targets one lab user and excludes administrators. Site-level sharing restrictions were preserved. The authenticated guest and file permissions created for the post-audit test were removed afterward; the guest was deleted. Temporary Purview administration assignments were removed after validation. User-added permissions were preserved.
 
 Public releases require a full-history Gitleaks scan and a separate identifier/privacy review. Secret scanning does not detect every sensitive screenshot, tenant identifier, or operational endpoint.
 

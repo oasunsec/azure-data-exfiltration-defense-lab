@@ -10,10 +10,11 @@
 - Four telemetry tables contained lab records. The resource/time correlation returned three matched denials.
 - A rejected write generated a native Medium Sentinel alert and incident 19.
 - Site-level sharing rejected anonymous links for both test files.
+- After unified audit ingestion was enabled, an authenticated guest opened `Sharing_Control.txt`; `Financial_Records_CONFIDENTIAL.docx` returned a SharePoint organizational-policy access-denied page.
 
 ## Not proven
 
-Content-specific SharePoint DLP enforcement; a DLP audit event or Sentinel DLP connector; endpoint DLP; USB/Bluetooth enforcement; Defender process/file/network telemetry; successful interactive MFA; a combined identity-to-storage-to-DLP scenario; exact actor attribution; prevention of every exfiltration path.
+An authoritative DLP record naming **Data Defense Lab - Strict financial access restriction**; a Sentinel DLP connector; endpoint DLP; USB/Bluetooth enforcement; Defender process/file/network telemetry; successful interactive MFA; a combined identity-to-storage-to-DLP scenario; exact actor attribution; prevention of every exfiltration path.
 
 ## Tests
 
@@ -23,11 +24,11 @@ Content-specific SharePoint DLP enforcement; a DLP audit event or Sentinel DLP c
 
 Storage uses Microsoft-managed keys plus infrastructure encryption, TLS 1.2, default-deny networking, disabled anonymous/shared-key access, and scoped OAuth roles. Encryption/TLS configuration is verified; cryptographic internals and protocol downgrade probes were not tested. No Owner workload role was added.
 
-MFA is enabled only for the dedicated test user, with administrator exclusions. The test app's delegated permission is User.Read for that user. Both workload identities have zero password credentials after cleanup. The previous temporary compliance assignment was removed. The current Purview pass has temporary Compliance Data Administrator and SharePoint Administrator assignments pending cleanup after testing; user-added permissions and lab configuration are preserved.
+MFA is enabled only for the dedicated test user, with administrator exclusions. The test app's delegated permission is User.Read for that user. Both workload identities have zero password credentials after cleanup. The temporary Purview assignments used for this pass and the created guest were removed; user-added permissions and lab configuration are preserved.
 
 ## Purview and Defender
 
-The strict DLP rule targets one site, requires a high-confidence Credit Card Number match and external sharing, blocks access except for the owner, last modifier, and site administrator, and has no override. Its distribution state is recorded in the [readiness check](docs/evidence/public/dlp-strict-readiness.json). A separate classifier test detected one credit-card match at confidence 65, 75, and 85 in synthetic text. Both anonymous-link requests were rejected. A later authenticated SharePoint readback confirmed that the site already permits authenticated guest sharing; no sharing change was needed. At September 8, 18:21 UTC, policy distribution was Pending and the prior rule was PendingDeletion. The corrected alert recipient was confirmed through the API, with zero overrides. Activity Explorer returned zero records. No guest access test ran. Defender and Azure VM inventories were empty; endpoint work remains outside this release.
+The strict DLP rule targets one site, requires a high-confidence Credit Card Number match and external sharing, blocks access except for the owner, last modifier, and site administrator, and has no override. A fresh readback reports policy distribution `Success`, the strict rule `Enforce`, and the retired rule still `PendingDeletion`. Unified audit ingestion was enabled before the controlled guest run. The guest opened the nonsensitive control file and received an organizational-policy block for the synthetic financial file; the page did not name a DLP rule. Activity Explorer and the available DLP reports returned no authoritative record during the observation window. The [post-audit behavior](docs/evidence/public/dlp-post-audit-test.json) and [telemetry result](docs/evidence/public/dlp-post-audit-telemetry.json) keep those results separate. Defender and Azure VM inventories were empty; endpoint work remains outside this release.
 
 ## Sentinel
 
@@ -35,11 +36,11 @@ The enabled Medium denied-write analytic produced a native alert and incident. A
 
 ## Evidence and security
 
-Public JSON uses selected fields and aliases. Nine storage, MFA, and Purview portal captures are cropped to their controls; sign-in request identifiers are redacted. Raw screenshots and API responses are ignored. The full-history and CI secret scans passed, and the public-file privacy check found no issues. The [cleanup readback](docs/evidence/public/dlp-pass-cleanup.json) confirms zero workload passwords and removal of the previous pass's temporary compliance role.
+Public JSON uses selected fields and aliases. Storage, MFA, and Purview portal captures are cropped to their controls; sign-in request identifiers are redacted. The post-audit guest result and telemetry are summarized without identities, URLs, or tokens. Raw screenshots and API responses are ignored. The full-history and CI secret scans passed, and the public-file privacy check found no issues. The [cleanup readback](docs/evidence/public/dlp-pass-cleanup.json) confirms zero workload passwords and removal of temporary administration.
 
 ## Recommendation
 
-**NEEDS_MORE_WORK.** Content-specific DLP enforcement is the remaining release requirement. The Azure, identity, and Sentinel results stand. Defender endpoint and USB/Bluetooth work can remain outside this release.
+**NEEDS_MORE_WORK.** The access restriction was observed, but content-specific Purview enforcement is not proven until authoritative telemetry names the strict rule. The Azure, identity, and Sentinel results stand. Defender endpoint and USB/Bluetooth work can remain outside this release.
 
 **Public-review status: NOT_READY_FOR_PUBLIC.** The repository remains private.
 
