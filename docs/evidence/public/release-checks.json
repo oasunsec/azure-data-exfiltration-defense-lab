@@ -6,6 +6,8 @@
   "bicep_templates_compiled": 4,
   "public_file_findings": 0,
   "full_history_gitleaks_findings": 0,
+  "ci_validation_run": "https://github.com/oasunsec/azure-data-exfiltration-defense-lab/actions/runs/34536941612",
+  "ci_validation_workflow": "https://github.com/oasunsec/azure-data-exfiltration-defense-lab/actions/workflows/validate.yml",
   "isolated_dlp_simulation_validated": true,
   "isolated_dlp_enforcement_validated": true,
   "isolated_dlp_authoritative_telemetry": [
