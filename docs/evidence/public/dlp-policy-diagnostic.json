@@ -1,0 +1,104 @@
+{
+  "CollectedAtUtc": "2026-09-10T17:13:09Z",
+  "PolicyComparison": {
+    "customLabPolicy": {
+      "name": "Data Defense Lab - Financial external access",
+      "mode": "Enable",
+      "priority": 4,
+      "distribution": "Success",
+      "scope": "Dedicated SharePoint lab site",
+      "rule": {
+        "name": "Data Defense Lab - Strict financial access restriction",
+        "mode": "Enforce",
+        "priority": 0,
+        "externalSharingCondition": "NotInOrganization",
+        "sensitiveInformation": "Credit Card Number, high confidence, minimum 1",
+        "action": "Block access for all users",
+        "userOverrides": "Disabled",
+        "alert": "Configured for the lab administrator"
+      }
+    },
+    "defaultOffice365Policy": {
+      "name": "Default Office 365 DLP policy",
+      "mode": "Enable",
+      "priority": 1,
+      "distribution": "Success",
+      "scope": "All SharePoint and OneDrive locations",
+      "rules": [
+        {
+          "name": "Items containing 1-9 credit card numbers shared externally",
+          "mode": "Enforce",
+          "priority": 0,
+          "externalSharingCondition": "NotInOrganization",
+          "sensitiveInformation": "Credit Card Number, high confidence, minimum 1, maximum 9",
+          "action": "No block action",
+          "userOverrides": "None reported"
+        },
+        {
+          "name": "Items with 10 or more credit card numbers shared externally",
+          "mode": "Enforce",
+          "priority": 1,
+          "externalSharingCondition": "NotInOrganization",
+          "sensitiveInformation": "Credit Card Number, high confidence, minimum 10",
+          "action": "No block action",
+          "userOverrides": "None reported"
+        }
+      ]
+    },
+    "retiredLabRule": {
+      "name": "Data Defense Lab - Credit card external access block",
+      "parentPolicy": "Data Defense Lab - Financial external access",
+      "mode": "PendingDeletion",
+      "priority": 1,
+      "externalSharingCondition": "NotInOrganization",
+      "sensitiveInformation": "No classifier condition in the saved AdvancedRule",
+      "action": "Block access for each user",
+      "userOverrides": "FalsePositive",
+      "alert": "Enabled in the retired rule"
+    }
+  },
+  "TestDlpPolicies": {
+    "financial": {
+      "file": "Financial_Records_CONFIDENTIAL.docx",
+      "succeeded": true,
+      "classifierDetected": "Credit Card Number at confidence 85, count 1",
+      "sharedWithExternalUser": false,
+      "viewableByExternalUsers": false,
+      "defaultPolicyMatched": false,
+      "customLabPolicyMatched": false,
+      "strictRuleMatched": false,
+      "actionsPerformed": []
+    },
+    "control": {
+      "file": "Sharing_Control.txt",
+      "succeeded": true,
+      "classifierDetected": "None",
+      "sharedWithExternalUser": false,
+      "viewableByExternalUsers": false,
+      "defaultPolicyMatched": false,
+      "customLabPolicyMatched": false,
+      "strictRuleMatched": false,
+      "actionsPerformed": []
+    }
+  },
+  "SharePointInspection": {
+    "financial": {
+      "adminView": "AccessDenied",
+      "policyTipVisible": false,
+      "message": "The lab administrator did not have access to the item."
+    },
+    "control": {
+      "adminView": "AccessDenied",
+      "policyTipVisible": false,
+      "message": "The lab administrator did not have access to the library."
+    },
+    "interpretation": "This is a SharePoint permission result, not evidence of a DLP rule match or policy tip."
+  },
+  "Conclusion": {
+    "customRuleStructure": "Valid readback",
+    "scopeOverlap": "The default policy covers all SharePoint and OneDrive locations; its rules do not block access.",
+    "testResult": "Neither policy matched because neither file was externally shared at evaluation time.",
+    "dlpEnforcementProven": false,
+    "nextEvidenceRequired": "A controlled external-share evaluation with an authoritative rule/action result."
+  }
+}
