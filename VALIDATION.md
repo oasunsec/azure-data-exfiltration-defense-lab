@@ -17,7 +17,7 @@
 
 ## Not proven
 
-The earlier historical credit-card path still lacks an authoritative record naming **Data Defense Lab - Strict financial access restriction**, and its old rule remains `PendingDeletion`. The separate isolated synthetic-identifier path is validated by Activity Explorer and Unified Audit, but that result does not generalize to every DLP rule or exfiltration path. A Sentinel DLP connector; endpoint DLP; USB/Bluetooth enforcement; Defender process/file/network telemetry; successful interactive MFA; exact actor attribution; prevention of every exfiltration path also remain unproven.
+The earlier historical credit-card path still lacks an authoritative record naming **Data Defense Lab - Strict financial access restriction**, and its old rule remains `PendingDeletion` as a separate Purview cleanup issue. The separate isolated synthetic-identifier path is validated by Activity Explorer and Unified Audit, but that result does not generalize to every DLP rule or exfiltration path. A Sentinel DLP connector; endpoint DLP; USB/Bluetooth enforcement; Defender process/file/network telemetry; successful interactive MFA; exact actor attribution; prevention of every exfiltration path also remain unproven.
 
 ## Tests
 

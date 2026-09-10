@@ -28,7 +28,7 @@ The guest directory object and the two item permissions created for this pass we
 
 ## Historical credit-card path
 
-The earlier **Data Defense Lab - Financial external access** path remains historical evidence. Its strict rule, **Data Defense Lab - Strict financial access restriction**, is still `Enforce`, priority 0, and site-scoped. The old **Data Defense Lab - Credit card external access block** remains `PendingDeletion`. Neither rule was modified or deleted during the isolated validation. The earlier generic access-denied page and ambiguous telemetry are retained as a limitation record; they are not used to claim enforcement of the historical rule.
+The earlier **Data Defense Lab - Financial external access** path remains historical evidence. Its strict rule, **Data Defense Lab - Strict financial access restriction**, is still `Enforce`, priority 0, and site-scoped. The old **Data Defense Lab - Credit card external access block** remains `PendingDeletion`; this is a separate Purview cleanup issue, and it was left untouched. Neither historical rule was modified or deleted during the isolated validation. The earlier generic access-denied page and ambiguous telemetry are retained as a limitation record; they are not used to claim enforcement of the historical rule.
 
 ## Boundaries
 
