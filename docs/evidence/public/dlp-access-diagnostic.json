@@ -26,7 +26,7 @@
     "UnmanagedDevicePolicy": "Fresh site and tenant readbacks: ConditionalAccessPolicy=AllowFullAccess. No unmanaged-device access restriction found in these settings.",
     "NetworkLocationPolicy": "Fresh tenant readback: IPAddressEnforcement=false. No SharePoint tenant IP allowlist enforcement found.",
     "SensitivityLabel": "Fresh site SensitivityLabel is blank; Activity Explorer undo event references no sensitivity label IDs. File-level encryption/protection remains unverified.",
-    "SiteOrItemPermissions": "Site is unlocked, authenticated guest sharing permitted, RestrictedAccessControl=false. Current item grants reflect cleanup. Get-SPOUser returned E_ACCESSDENIED; group membership and owner policy-tip inspection remain unresolved."
+    "SiteOrItemPermissions": "Site unlocked; authenticated guest sharing permitted; RestrictedAccessControl=false. Both user-provided Details views now show item not shared, without a policy tip. Get-SPOUser failed E_ACCESSDENIED, so effective group membership remains unresolved."
   },
   "StrictRuleEnforcementProven": false,
   "Recommendation": "NEEDS_MORE_WORK",
@@ -51,5 +51,24 @@
     "StrictRuleEnforcementRecordFound": false,
     "ActivityExplorerResult": "Success; one default-policy DLP rule undo; last page",
     "DlpReports": "All three attempted report cmdlets returned service-unavailable errors; not an empty successful search."
+  },
+  "DetailsInspection": {
+    "Source": "User-provided SharePoint Details screenshots, following site-owner inspection request",
+    "RecordedAtUtc": "2026-09-10T17:58:13.927668+00:00",
+    "FinancialFile": {
+      "Name": "Financial_Records_CONFIDENTIAL.docx",
+      "SharingText": "This item is not shared",
+      "SensitivityField": "Enter value here",
+      "VisibleDlpWarning": false,
+      "VisiblePolicyTip": false
+    },
+    "ControlFile": {
+      "Name": "Sharing_Control.txt",
+      "SharingText": "This item is not shared",
+      "SensitivityField": "Not displayed in supplied captures",
+      "VisibleDlpWarning": false,
+      "VisiblePolicyTip": false
+    },
+    "Interpretation": "Both captured Details panes show post-cleanup state without a visible policy warning. No policy/rule or enforcement action is named. Empty or absent Sensitivity metadata does not independently verify file-level encryption or protection. These captures cannot attribute the earlier guest block."
   }
 }

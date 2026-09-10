@@ -102,5 +102,24 @@
     "testResult": "Classifier detected; external-sharing flags false after cleanup. The strict rule uses grouped/nested AdvancedRule conditions, which Test-DlpPolicies does not support. Its reported IsMatched=false is inconclusive for that rule; it does not establish whether the earlier guest block was caused by DLP.",
     "dlpEnforcementProven": false,
     "nextEvidenceRequired": "Authoritative strict-rule match and enforcement action linked to the guest test; no retest authorized in this diagnostic pass."
+  },
+  "SubsequentDetailsInspection": {
+    "Source": "User-provided SharePoint Details screenshots, following site-owner inspection request",
+    "RecordedAtUtc": "2026-09-10T17:58:13.927668+00:00",
+    "FinancialFile": {
+      "Name": "Financial_Records_CONFIDENTIAL.docx",
+      "SharingText": "This item is not shared",
+      "SensitivityField": "Enter value here",
+      "VisibleDlpWarning": false,
+      "VisiblePolicyTip": false
+    },
+    "ControlFile": {
+      "Name": "Sharing_Control.txt",
+      "SharingText": "This item is not shared",
+      "SensitivityField": "Not displayed in supplied captures",
+      "VisibleDlpWarning": false,
+      "VisiblePolicyTip": false
+    },
+    "Interpretation": "Both captured Details panes show post-cleanup state without a visible policy warning. No policy/rule or enforcement action is named. Empty or absent Sensitivity metadata does not independently verify file-level encryption or protection. These captures cannot attribute the earlier guest block."
   }
 }
