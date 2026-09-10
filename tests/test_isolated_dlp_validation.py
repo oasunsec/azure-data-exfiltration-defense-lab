@@ -27,3 +27,13 @@ def test_isolated_policy_script_never_mutates_historical_rules():
         assert f"Remove-DlpComplianceRule -Identity '{historical_name}'" not in script
     assert "[ValidateSet('CreateSimulation','Enforce','Disable')]" in script
     assert "New-DlpCompliancePolicy -Name $policyName -SharePointLocation $LabSiteUrl.AbsoluteUri -Mode TestWithNotifications" in script
+
+
+def test_isolated_policy_cannot_enforce_without_attributable_simulation():
+    script = (ROOT / 'scripts' / 'configure_isolated_dlp_validation.ps1').read_text()
+    assert "if ($Phase -eq 'Enforce')" in script
+    assert "Simulation evidence is required before enforcement." in script
+    assert "The simulation gate is not passed; keep the isolated policy in simulation." in script
+    assert "AttributableMatches" in script
+    assert "Start-Sleep -Seconds 30" in script
+    assert "Distribution did not reach Success for phase $Phase." in script

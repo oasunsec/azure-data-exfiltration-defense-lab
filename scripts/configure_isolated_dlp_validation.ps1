@@ -81,6 +81,24 @@ if ($conditions.Count -ne 1 -or [string]$conditions[0].Name -ne $sitName -or
   throw 'The isolated diagnostic rule readback failed validation.'
 }
 
+if ($Phase -eq 'Enforce') {
+  $simulationPath = Join-Path $evidencePath 'simulation-poll-latest.json'
+  if (-not (Test-Path -LiteralPath $simulationPath)) {
+    throw 'Simulation evidence is required before enforcement.'
+  }
+  $simulation = Get-Content -LiteralPath $simulationPath -Raw | ConvertFrom-Json -ErrorAction Stop
+  $simulationMatches = @($simulation.ActivityExplorer.AttributableMatches | Where-Object {
+    $_.ItemName -like '*Financial_Records_CONFIDENTIAL.docx*' -and
+    $_.PolicyName -eq $policyName -and
+    $_.RuleName -eq $ruleName -and
+    $_.SensitiveInformationTypeId -eq $sitId
+  })
+  if (-not $simulation.SimulationGatePassed -or $simulationMatches.Count -lt 1 -or
+      [string]$policy.Mode -ne 'TestWithNotifications') {
+    throw 'The simulation gate is not passed; keep the isolated policy in simulation.'
+  }
+}
+
 $targetMode = switch ($Phase) {
   'CreateSimulation' { 'TestWithNotifications' }
   'Enforce' { 'Enable' }
@@ -90,6 +108,24 @@ if ([string]$policy.Mode -ne $targetMode) {
   Set-DlpCompliancePolicy -Identity $policyName -Mode $targetMode -ErrorAction Stop
 }
 $saved = Get-DlpCompliancePolicy -Identity $policyName -DistributionDetail -ErrorAction Stop
+if ($Phase -in @('Enforce','Disable')) {
+  $historyPath = Join-Path $evidencePath ("$($Phase.ToLowerInvariant())-distribution-history.jsonl")
+  $deadline = (Get-Date).AddMinutes(30)
+  do {
+    $saved = Get-DlpCompliancePolicy -Identity $policyName -DistributionDetail -ErrorAction Stop
+    [pscustomobject]@{
+      CheckedAtUtc = [datetime]::UtcNow.ToString('o')
+      Mode = [string]$saved.Mode
+      DistributionStatus = [string]$saved.DistributionStatus
+      DistributionResults = $saved.DistributionResults
+    } | ConvertTo-Json -Depth 12 -Compress | Add-Content -LiteralPath $historyPath
+    if ([string]$saved.DistributionStatus -eq 'Success') { break }
+    if ((Get-Date) -ge $deadline) {
+      throw "Distribution did not reach Success for phase $Phase."
+    }
+    Start-Sleep -Seconds 30
+  } while ($true)
+}
 $savedRule = Get-DlpComplianceRule -Identity $ruleName -ErrorAction Stop
 $result = [pscustomobject]@{
   CheckedAtUtc = [datetime]::UtcNow.ToString('o')
