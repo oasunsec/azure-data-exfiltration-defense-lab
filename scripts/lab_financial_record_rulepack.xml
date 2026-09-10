@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RulePackage xmlns="http://schemas.microsoft.com/office/2011/mce">
+  <RulePack id="486C5396-70D5-4C33-9FA5-2E8805DD126B">
+    <Version major="1" minor="0" build="0" revision="0" />
+    <Publisher id="26746A88-D594-414C-AE72-183F2370E829" />
+    <Details defaultLangCode="en-us">
+      <LocalizedDetails langcode="en-us">
+        <PublisherName>Data Defense Lab</PublisherName>
+        <Name>Data Defense Lab Synthetic Identifier Rule Pack</Name>
+        <Description>Contains the isolated lab-only financial record identifier.</Description>
+      </LocalizedDetails>
+    </Details>
+  </RulePack>
+  <Rules>
+    <Entity id="4AC7F0C2-1A1F-4D18-995A-6ECFBC2133DD" patternsProximity="300" recommendedConfidence="85">
+      <Pattern confidenceLevel="85">
+        <IdMatch idRef="Regex_lab_financial_record_id" />
+      </Pattern>
+    </Entity>
+    <Regex id="Regex_lab_financial_record_id">(?:^|[\s,;:\(\)\[\]&quot;'])(LAB-FIN-[0-9]{8})(?:$|[\s,;:\(\)\[\]&quot;'])</Regex>
+    <LocalizedStrings>
+      <Resource idRef="4AC7F0C2-1A1F-4D18-995A-6ECFBC2133DD">
+        <Name default="true" langcode="en-us">Lab Financial Record ID</Name>
+        <Description default="true" langcode="en-us">Detects synthetic LAB-FIN identifiers used only by the Data Defense Lab.</Description>
+      </Resource>
+    </LocalizedStrings>
+  </Rules>
+</RulePackage>
