@@ -34,6 +34,7 @@ Screenshots are genuine portal captures cropped to the relevant controls. JSON c
 | [Strict DLP readiness](dlp-strict-readiness.json) | Single-site scope, high-confidence classifier, strict block, no overrides, distribution state |
 | [Read-only access diagnostic](dlp-access-diagnostic.json) | Current permissions, guest sign-in, and unresolved alternative causes |
 | [DLP policy diagnostic](dlp-policy-diagnostic.json) | Current policy/rule comparison, item-level `Test-DlpPolicies` results, and the SharePoint access-denied inspection result |
+| [Isolated DLP simulation](dlp-isolated-simulation.json) | The site-scoped lab policy matched the synthetic financial file in Simulation with the custom classifier; enforcement was not inferred from this record |
 | [Activity Explorer query](dlp-activity-query.json) | Successful query with zero records in its 24-hour window |
 | [Current cleanup](dlp-pass-cleanup.json) | Temporary compliance role removed; workload secrets zero; sharing unchanged |
 | [Classifier test](dlp-classifier-test.json) | Credit Card Number matched synthetic text; not a file-enforcement test |

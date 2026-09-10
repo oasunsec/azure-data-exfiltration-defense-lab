@@ -1,0 +1,21 @@
+{
+  "capturedAtUtc": "2026-09-10T19:15:33Z",
+  "source": "Purview Activity Explorer simulation readback",
+  "policy": "Data Defense Lab - Isolated Financial ID Validation",
+  "policyMode": "TestWithNotifications",
+  "distributionStatus": "Success",
+  "rule": "Data Defense Lab - Lab Financial Record ID",
+  "activity": "DLP rule matched",
+  "file": "Financial_Records_CONFIDENTIAL.docx",
+  "sensitiveInformationType": "Lab Financial Record ID",
+  "identifierPattern": "LAB-FIN-########",
+  "classifierMatchCount": 1,
+  "classifierConfidence": 85,
+  "simulationActions": [
+    "NotifyUser",
+    "GenerateAlert"
+  ],
+  "controlFileMatched": false,
+  "rawCallbackTokenIncluded": false,
+  "note": "This record proves an attributable simulation match. It does not prove enforcement or external sharing behavior."
+}

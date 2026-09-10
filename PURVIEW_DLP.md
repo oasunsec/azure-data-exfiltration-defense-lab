@@ -8,6 +8,8 @@ The reproducible validation path uses the custom **Lab Financial Record ID** cla
 
 The policy must identify the financial file in Purview Simulation before it can be changed to enforcement. After one attributable enforcement comparison, the policy is disabled and retained with the custom classifier as a reproducible lab artifact. The existing credit-card policy and its retired `PendingDeletion` rule are outside this path and remain unchanged.
 
+On 2026-09-10 at 18:24:19 UTC, Purview Activity Explorer recorded `DLP rule matched` for `Financial_Records_CONFIDENTIAL.docx`. The record named the isolated policy, the isolated rule, and `Lab Financial Record ID`, with one match at confidence 85. The policy reached distribution `Success` at 19:15 UTC while still in simulation. This is the simulation gate; it does not claim enforcement or external sharing.
+
 I scoped **Data Defense Lab - Financial external access** to the dedicated SharePoint lab site. Its rule, **Data Defense Lab - Strict financial access restriction**, matches at least one Credit Card Number at high confidence (85) when content is shared outside the organization.
 
 The action blocks access except for the owner, last modifier, and site administrator. User overrides are disabled. The [PowerShell script](scripts/configure_dlp.ps1) requires an SMTP address in `AlertRecipient` and checks the saved recipient, scope, classifier, block action, and override settings before enabling the policy.
