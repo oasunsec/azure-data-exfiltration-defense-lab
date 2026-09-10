@@ -34,5 +34,63 @@
   "DlpRuleNamed": false,
   "EnforcementActionNamed": false,
   "DlpEnforcementEstablished": false,
-  "Interpretation": "No authoritative post-audit record naming the strict rule and enforcement action was returned."
+  "Interpretation": "The broad Unified Audit query now returns 27 records, including control-file sharing and cleanup. No strict-rule enforcement record was identified. Activity Explorer still returns the default-policy undo. Current report cmdlets are unavailable; their errors are not evidence of absent records.",
+  "LaterObservation": {
+    "ObservedAtUtc": "2026-09-09T21:29:46.6625628Z",
+    "Source": "Activity Explorer read-only poll",
+    "Activity": "DLP rule undo",
+    "ActivityId": "DLPRuleUndo",
+    "Happened": "2026-09-09T21:02:19Z",
+    "Workload": "SharePoint",
+    "DataPlatform": "M365",
+    "FileName": "Financial_Records_CONFIDENTIAL.docx",
+    "SensitiveInfoTypeMatchCount": 1,
+    "HighestConfidence": 85,
+    "PolicyName": "Default Office 365 DLP policy",
+    "RuleName": "Items containing 1-9 credit card numbers shared externally",
+    "IntendedStrictRuleNamed": false,
+    "EnforcementActionNamed": false,
+    "Reason": "DocumentModified",
+    "Interpretation": "Purview telemetry is present, but this record is a DLP rule undo under the default Office 365 DLP policy. It does not name the intended strict lab rule or an enforcement action and cannot establish strict-rule enforcement."
+  },
+  "LaterUnifiedAudit": {
+    "Query": "Broad unfiltered search, 20:15-22:30 UTC",
+    "Succeeded": true,
+    "RecordCount": 0,
+    "Warnings": []
+  },
+  "CurrentDiagnostic": {
+    "CheckedAtUtc": "2026-09-10T17:48:44.4122846Z",
+    "UnifiedAudit": {
+      "Succeeded": true,
+      "Count": 27,
+      "Warnings": []
+    },
+    "DlpReports": {
+      "Get-DlpDetailReport": {
+        "Succeeded": false,
+        "ReturnedRows": 0,
+        "ServiceError": "The cmdlet is currently unavailable: deprecated, restricted, or temporarily blocked. The service response does not identify which reason applies."
+      },
+      "Get-DlpDetectionsReport": {
+        "Succeeded": false,
+        "ReturnedRows": 0,
+        "ServiceError": "The cmdlet is currently unavailable: deprecated, restricted, or temporarily blocked. The service response does not identify which reason applies."
+      },
+      "Get-DlpIncidentDetailReport": {
+        "Succeeded": false,
+        "ReturnedRows": 0,
+        "ServiceError": "The cmdlet is currently unavailable: deprecated, restricted, or temporarily blocked. The service response does not identify which reason applies."
+      }
+    },
+    "ActivityExplorer": {
+      "ResultCode": "Success",
+      "RecordCount": 1,
+      "Activity": "DLP rule undo",
+      "PolicyName": "Default Office 365 DLP policy",
+      "RuleName": "Items containing 1-9 credit card numbers shared externally",
+      "StrictRuleNamed": false,
+      "EnforcementActionNamed": false
+    }
+  }
 }

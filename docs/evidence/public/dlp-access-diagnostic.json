@@ -1,0 +1,55 @@
+{
+  "CheckedAtUtc": "2026-09-10T17:37:57.605762+00:00",
+  "Mode": "Read-only; no guest retest or configuration changes",
+  "ItemPermissions": {
+    "files": [
+      "Financial_Records_CONFIDENTIAL.docx",
+      "Sharing_Control.txt"
+    ],
+    "returnedEntriesPerFile": 4,
+    "principals": "Owners, Members, Visitors and Microsoft 365 group owners",
+    "directGuestGrantsReturned": 0,
+    "sharingLinksReturned": 0,
+    "limitation": "Group membership and historical permissions at the guest test are not established by current item permission responses."
+  },
+  "GuestSignIn": {
+    "Identity": "Controlled lab guest",
+    "TimestampUtc": "2026-09-09T20:30:25Z",
+    "Resource": "SharePoint Online",
+    "ErrorCode": 0,
+    "ConditionalAccessStatus": "notApplied",
+    "AppliedConditionalAccessPolicies": [],
+    "Interpretation": "No Conditional Access block in this sign-in record; not proof of the cause of the later file denial."
+  },
+  "AlternativeCauses": {
+    "InformationBarriers": "Current policy and organization-segment inventories returned zero; site InformationBarriersMode was blank. No configured Information Barriers policy found.",
+    "UnmanagedDevicePolicy": "Fresh site and tenant readbacks: ConditionalAccessPolicy=AllowFullAccess. No unmanaged-device access restriction found in these settings.",
+    "NetworkLocationPolicy": "Fresh tenant readback: IPAddressEnforcement=false. No SharePoint tenant IP allowlist enforcement found.",
+    "SensitivityLabel": "Fresh site SensitivityLabel is blank; Activity Explorer undo event references no sensitivity label IDs. File-level encryption/protection remains unverified.",
+    "SiteOrItemPermissions": "Site is unlocked, authenticated guest sharing permitted, RestrictedAccessControl=false. Current item grants reflect cleanup. Get-SPOUser returned E_ACCESSDENIED; group membership and owner policy-tip inspection remain unresolved."
+  },
+  "StrictRuleEnforcementProven": false,
+  "Recommendation": "NEEDS_MORE_WORK",
+  "PurviewReadback": {
+    "CheckedAtUtc": "2026-09-10T17:47:31Z",
+    "DistributionDetailUsed": true,
+    "DistributionStatus": "Success",
+    "DistributionResults": [],
+    "StrictRuleMode": "Enforce",
+    "StrictRulePriority": 0,
+    "OldRuleMode": "PendingDeletion",
+    "InformationBarrierPolicyCount": 0,
+    "OrganizationSegmentCount": 0
+  },
+  "Telemetry": {
+    "UnifiedAuditWindowUtc": [
+      "2026-09-09T20:15:00Z",
+      "2026-09-09T22:30:00Z"
+    ],
+    "UnifiedAuditRecords": 27,
+    "UnifiedAuditWarnings": [],
+    "StrictRuleEnforcementRecordFound": false,
+    "ActivityExplorerResult": "Success; one default-policy DLP rule undo; last page",
+    "DlpReports": "All three attempted report cmdlets returned service-unavailable errors; not an empty successful search."
+  }
+}

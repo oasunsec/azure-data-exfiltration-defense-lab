@@ -13,7 +13,7 @@
         "priority": 0,
         "externalSharingCondition": "NotInOrganization",
         "sensitiveInformation": "Credit Card Number, high confidence, minimum 1",
-        "action": "Block access for all users",
+        "action": "Block access except owner, last modifier, and site administrator",
         "userOverrides": "Disabled",
         "alert": "Configured for the lab administrator"
       }
@@ -79,7 +79,9 @@
       "customLabPolicyMatched": false,
       "strictRuleMatched": false,
       "actionsPerformed": []
-    }
+    },
+    "Interpretation": "The strict rule uses grouped/nested AdvancedRule conditions, which Test-DlpPolicies does not support. Its reported IsMatched=false is inconclusive for that rule; it does not establish whether the earlier guest block was caused by DLP.",
+    "Documentation": "https://learn.microsoft.com/en-us/purview/dlp-test-dlp-policies"
   },
   "SharePointInspection": {
     "financial": {
@@ -88,17 +90,17 @@
       "message": "The lab administrator did not have access to the item."
     },
     "control": {
-      "adminView": "AccessDenied",
+      "adminView": "Not inspected individually",
       "policyTipVisible": false,
-      "message": "The lab administrator did not have access to the library."
+      "message": "Library inspection was denied; no separate control-file Details inspection was completed."
     },
     "interpretation": "This is a SharePoint permission result, not evidence of a DLP rule match or policy tip."
   },
   "Conclusion": {
-    "customRuleStructure": "Valid readback",
+    "customRuleStructure": "Configured nested/grouped conditions; unsupported by Test-DlpPolicies",
     "scopeOverlap": "The default policy covers all SharePoint and OneDrive locations; its rules do not block access.",
-    "testResult": "Neither policy matched because neither file was externally shared at evaluation time.",
+    "testResult": "Classifier detected; external-sharing flags false after cleanup. The strict rule uses grouped/nested AdvancedRule conditions, which Test-DlpPolicies does not support. Its reported IsMatched=false is inconclusive for that rule; it does not establish whether the earlier guest block was caused by DLP.",
     "dlpEnforcementProven": false,
-    "nextEvidenceRequired": "A controlled external-share evaluation with an authoritative rule/action result."
+    "nextEvidenceRequired": "Authoritative strict-rule match and enforcement action linked to the guest test; no retest authorized in this diagnostic pass."
   }
 }
