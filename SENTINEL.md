@@ -16,6 +16,6 @@ The rule runs every five minutes and groups incidents by the mapped storage reso
 
 The [cross-source query](docs/kql/storage-change-denied-access.kql) returned three denied reads after successful account changes. The join uses normalized resource ID and a five-minute window, choosing the closest preceding change for each request. The firewall test independently recorded authorized access, denial after allowlist removal, and restored access.
 
-The MFA sign-in sequence is a separate controlled test. It was not the identity used for the workload's storage request. Purview and Defender were not joined into this incident. The connector inventory contained no Purview/Office 365 connector. Audit ingestion was enabled for a later SharePoint guest test, but Activity Explorer and the available DLP reports returned no record naming the strict rule, so no DLP incident is claimed.
+The MFA sign-in sequence is a separate controlled test. It was not the identity used for the workload's storage request. Purview and Defender were not joined into this incident. The connector inventory contained no Purview/Office 365 connector, so the isolated Purview validation is documented separately and no DLP-to-Sentinel correlation is claimed.
 
 [Queries](docs/kql/README.md) · [Sanitized correlation](docs/evidence/public/cross-source-correlation.json) · [Detection trigger](docs/evidence/public/sentinel-trigger.json)

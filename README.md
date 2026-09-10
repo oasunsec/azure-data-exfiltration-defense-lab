@@ -28,8 +28,7 @@ flowchart LR
 | MFA | Password-only authentication succeeded in report-only mode and failed when the lab MFA policy was enabled. |
 | Sentinel | A denied write produced a native Medium alert and incident. |
 | Investigation | I correlated three denied reads with preceding changes on the same storage account. |
-| SharePoint DLP | The isolated site-scoped policy matched the synthetic financial identifier in Simulation and Enforce. Activity Explorer and Unified Audit named the isolated policy, rule, classifier, and `BlockAccess`; the control file opened and the financial file was blocked. The older credit-card path remains historical. |
-| Isolated Purview simulation and enforcement | `Financial_Records_CONFIDENTIAL.docx` matched `Lab Financial Record ID` in Simulation, then the same rule reached `Enable`/`Success` and produced authoritative `BlockAccess` telemetry for the controlled guest comparison. |
+| SharePoint DLP | The isolated site-scoped policy matched `Lab Financial Record ID` in Simulation and reached enforcement distribution `Success`. Activity Explorer and Unified Audit independently recorded the exact policy, rule, file, classifier, and `BlockAccess`. A subsequent guest comparison opened the control file and blocked the financial file; no direct correlation between the 20:24 telemetry and the 20:30 guest requests is claimed. |
 
 ## Evidence
 
@@ -37,7 +36,7 @@ flowchart LR
 
 ## What remains
 
-The isolated guest run demonstrated the intended file-level difference, and Purview Activity Explorer plus Unified Audit named the isolated rule and `BlockAccess` action. The earlier credit-card path remains a separate historical limitation, including its `PendingDeletion` rule. The [Purview record](PURVIEW_DLP.md) keeps those results distinct. Defender endpoint correlation and USB/Bluetooth controls remain outside the tested release.
+The 20:24 UTC Purview records prove the isolated policy matched the financial file and carried the `BlockAccess` action. The 20:30 UTC guest comparison is subsequent behavioral validation, kept separate because direct event correlation was not established. The historical `PendingDeletion` rule remains a cleanup issue. Defender endpoint correlation and USB/Bluetooth controls remain outside the tested release.
 
 A blocked request does not prove every exfiltration path is closed. Authorized downloads remain possible, and resource/time correlation does not identify a person. [Limitations](LIMITATIONS.md) lists the remaining boundaries.
 

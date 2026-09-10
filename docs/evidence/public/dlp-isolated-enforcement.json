@@ -60,7 +60,8 @@
     "dlp-isolated-control.png",
     "dlp-isolated-financial-block.png"
   ],
-  "interpretation": "The custom classifier matched the synthetic financial document in simulation and enforcement. Unified Audit and Activity Explorer name the isolated policy, rule, classifier, and BlockAccess action. The guest-facing block page is generic; the attribution comes from Purview telemetry.",
+  "interpretation": "The custom classifier matched the synthetic financial document in simulation and enforcement. Unified Audit and Activity Explorer name the isolated policy, rule, classifier, and BlockAccess action.",
+  "guestComparisonRelationship": "The guest comparison occurred later and is supporting behavioral validation. No direct event correlation between the 20:24 telemetry and the 20:30 guest requests was established.",
   "limits": [
     "The callback or block event does not identify a person or prove exfiltration.",
     "The source identity remains an external lab guest alias and is not an attribution claim.",
