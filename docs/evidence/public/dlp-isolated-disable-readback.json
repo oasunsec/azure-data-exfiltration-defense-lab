@@ -1,0 +1,14 @@
+{
+  "policy": "Data Defense Lab - Isolated Financial ID Validation",
+  "mode": "Disable",
+  "distributionStatus": "Success",
+  "checkedAtUtc": "2026-09-10T22:15:37Z",
+  "rule": {
+    "name": "Data Defense Lab - Lab Financial Record ID",
+    "mode": "Enforce",
+    "priority": 0,
+    "blockAccess": true,
+    "blockAccessScope": "All"
+  },
+  "historicalRulesChanged": false
+}

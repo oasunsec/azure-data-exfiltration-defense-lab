@@ -1,42 +1,37 @@
-# Purview DLP test
+# Purview DLP validation
 
 **Sample uses synthetic financial data only.**
 
-## Isolated validation path
+## Isolated simulation-to-enforcement path
 
-The reproducible validation path uses the custom **Lab Financial Record ID** classifier for `LAB-FIN-########` values. **Data Defense Lab - Isolated Financial ID Validation** is scoped only to the dedicated SharePoint lab site and starts in simulation. Its rule has one condition: content contains the custom classifier. The current financial sample contains `LAB-FIN-20270910` and no credit-card test value; `Sharing_Control.txt` remains the nonsensitive comparison.
+The reproducible lab path uses the custom **Lab Financial Record ID** sensitive information type for the synthetic `LAB-FIN-########` identifier. **Data Defense Lab - Isolated Financial ID Validation** is scoped only to the dedicated SharePoint lab site. Its rule, **Data Defense Lab - Lab Financial Record ID**, has one content condition, requires one high-confidence match, blocks access for all users, and has no user override. `Financial_Records_CONFIDENTIAL.docx` contains `LAB-FIN-20270910`; `Sharing_Control.txt` does not.
 
-The policy must identify the financial file in Purview Simulation before it can be changed to enforcement. After one attributable enforcement comparison, the policy is disabled and retained with the custom classifier as a reproducible lab artifact. The existing credit-card policy and its retired `PendingDeletion` rule are outside this path and remain unchanged.
+Purview Simulation first matched the financial document on 2026-09-10 at 18:24:19 UTC. Activity Explorer named the isolated policy, rule, and classifier, with one match at confidence 85. The policy reached distribution `Success` while still in simulation. The policy then moved to enforcement and reached distribution `Success` at 20:18:48 UTC.
 
-On 2026-09-10 at 18:24:19 UTC, Purview Activity Explorer recorded `DLP rule matched` for `Financial_Records_CONFIDENTIAL.docx`. The record named the isolated policy, the isolated rule, and `Lab Financial Record ID`, with one match at confidence 85. The policy reached distribution `Success` at 19:15 UTC while still in simulation. This is the simulation gate; it does not claim enforcement or external sharing.
+The controlled guest comparison produced the expected file-level difference at 20:30:09 UTC: `Sharing_Control.txt` opened, while `Financial_Records_CONFIDENTIAL.docx` returned the generic SharePoint message, “Due to organizational policies, you can't access this resource.” The page itself does not name a DLP rule.
 
-I scoped **Data Defense Lab - Financial external access** to the dedicated SharePoint lab site. Its rule, **Data Defense Lab - Strict financial access restriction**, matches at least one Credit Card Number at high confidence (85) when content is shared outside the organization.
+Authoritative Purview telemetry supplies that attribution. Activity Explorer recorded `DLP rule matched` at 20:24:24 UTC for the exact financial file and named the isolated policy, rule, classifier, and `BlockAccess`. Unified Audit recorded `DLPRuleMatch` at 20:24:23 UTC with the same policy, rule, classifier, file, and `BlockAccess` action. The [isolated enforcement record](docs/evidence/public/dlp-isolated-enforcement.json) and the sanitized [alert-policy capture](docs/evidence/public/dlp-isolated-alert-policy.png) preserve the observed fields.
 
-The action blocks access except for the owner, last modifier, and site administrator. User overrides are disabled. The [PowerShell script](scripts/configure_dlp.ps1) requires an SMTP address in `AlertRecipient` and checks the saved recipient, scope, classifier, block action, and override settings before enabling the policy.
+The guest directory object and the two item permissions created for this pass were removed after the comparison. Original site groups and tenant/site sharing settings were preserved. The diagnostic policy is disabled and retained as a reproducible lab artifact; the final public [disable readback](docs/evidence/public/dlp-isolated-disable-readback.json) records `Disable` with distribution `Success`.
 
-## Test results
+## Isolated test results
 
-| Test | Result | Evidence |
+| Test | Observed result | Evidence |
 | --- | --- | --- |
-| Synthetic classifier input | One Credit Card Number match at confidence 65, 75, and 85 | [Classifier response](docs/evidence/public/dlp-classifier-test.json) |
-| Anonymous-link request for financial file and nonsensitive control | Both rejected with `sharingDisabled`; no link created | [Sharing responses](docs/evidence/public/sharing-control-test.json) |
-| Strict rule readback | Block enabled, one site, confidence 85, no overrides | [Readiness check](docs/evidence/public/dlp-strict-readiness.json) |
-| Authenticated guest control file | Accessible after audit ingestion was enabled | [Post-audit behavior](docs/evidence/public/dlp-post-audit-test.json) |
-| Authenticated guest financial file | Blocked by an organizational-policy access-denied page; the page did not name a DLP rule | [Post-audit behavior](docs/evidence/public/dlp-post-audit-test.json) |
-| Fresh authenticated guest comparison | At 20:34:58 UTC, control file accessible; financial file blocked by the same organizational-policy page | [Fresh behavior](docs/evidence/public/dlp-fresh-guest-test.json) |
-| Authoritative DLP telemetry | NOT VALIDATED | The latest broad Unified Audit search returned 27 records, including control-file sharing and cleanup, but no strict-rule enforcement record. Activity Explorer returned only a default-policy DLP rule undo. The three DLP report cmdlets returned service-unavailable errors; those failures do not establish that records are absent. |
-| Item-level policy diagnostic | Classifier detected; external-sharing flags false after cleanup; grouped strict-rule evaluation inconclusive | [Diagnostic comparison](docs/evidence/public/dlp-policy-diagnostic.json) |
+| Simulation gate | Exact financial file matched the isolated policy, rule, and `Lab Financial Record ID`; distribution `Success` | [Simulation evidence](docs/evidence/public/dlp-isolated-simulation.json), [simulation detail](docs/evidence/public/dlp-isolated-simulation-detail.png) |
+| Enforcement readback | Policy reached `Enable`/`Success`; rule used `BlockAccess` with no overrides | [Enforcement evidence](docs/evidence/public/dlp-isolated-enforcement.json), [enforcement detail](docs/evidence/public/dlp-isolated-enforcement-detail.png) |
+| Activity Explorer | `DLP rule matched`; exact file, policy, rule, classifier, confidence 85, and `BlockAccess` | [Enforcement evidence](docs/evidence/public/dlp-isolated-enforcement.json) |
+| Unified Audit | `DLPRuleMatch`; exact file, policy, rule, classifier, `BlockAccess`, and sanitized external identity alias | [Enforcement evidence](docs/evidence/public/dlp-isolated-enforcement.json) |
+| Guest comparison | Control file opened; financial file was blocked | [Guest control](docs/evidence/public/dlp-isolated-control.png), [financial block](docs/evidence/public/dlp-isolated-financial-block.png) |
+| Alert details | Purview alert named the isolated policy and rule and recorded the matching financial document | [Alert capture](docs/evidence/public/dlp-isolated-alert-policy.png) |
+| Cleanup | Guest and this pass's item permissions removed; original sharing settings preserved | Private cleanup readbacks under `evidence-private/isolated-dlp-validation/` |
 
-The original requests attempted anonymous links and were rejected by the site sharing boundary. An authenticated SharePoint readback confirmed that the lab site already permits authenticated guest sharing (`ExternalUserSharingOnly`); no sharing change was needed. After unified audit ingestion was enabled, the guest opened the control file and the financial file returned the organizational-policy block page. The page did not name the Purview policy or rule. The fresh policy readback reports distribution `Success`; the earlier rule remains `PendingDeletion`. The alert recipient matches the dedicated lab administrator and overrides remain disabled. The guest, item permissions, and temporary Purview roles were removed after the run.
+## Historical credit-card path
 
-A controlled external guest test must establish that the nonsensitive file is accessible while the financial file is restricted by this rule. The external test account must not be an exempt owner. Any temporary site-sharing change and guest file permissions are removed after the test. The fresh comparison met the behavioral condition, but no authoritative record named the rule or action.
+The earlier **Data Defense Lab - Financial external access** path remains historical evidence. Its strict rule, **Data Defense Lab - Strict financial access restriction**, is still `Enforce`, priority 0, and site-scoped. The old **Data Defense Lab - Credit card external access block** remains `PendingDeletion`. Neither rule was modified or deleted during the isolated validation. The earlier generic access-denied page and ambiguous telemetry are retained as a limitation record; they are not used to claim enforcement of the historical rule.
 
-The latest broad Unified Audit search returned 27 records, including control-file sharing and cleanup, but no strict-rule enforcement record. Activity Explorer returned only a default-policy DLP rule undo. The three DLP report cmdlets returned service-unavailable errors; those failures do not establish that records are absent. [Fresh telemetry](docs/evidence/public/dlp-fresh-guest-telemetry.json). This is a telemetry gap, not proof that the access-denied page was or was not caused by Purview.
+## Boundaries
 
-The later item-level diagnostic exported the current policy and rule objects. The custom rule is site-scoped, uses the saved external-sharing and high-confidence Credit Card Number conditions, blocks access except for the owner, last modifier, and site administrator, and has no user override. The tenant default policy covers all SharePoint and OneDrive locations but its two credit-card rules have no block action. The retired lab rule is still `PendingDeletion` and has no classifier condition in its saved `AdvancedRule`. `Test-DlpPolicies` reported no match or action and external-sharing flags were false after cleanup. The strict rule uses grouped/nested AdvancedRule conditions, which Test-DlpPolicies does not support. Its reported IsMatched=false is inconclusive for that rule; it does not establish whether the earlier guest block was caused by DLP. The lab administrator could not open the item or library in SharePoint, so no policy tip was available. These results do not establish DLP enforcement.
+The result proves the isolated synthetic classifier and `BlockAccess` action for this SharePoint test. It does not prove that every exfiltration path is closed, identify a person or intent, or validate endpoint DLP, USB/Bluetooth controls, or Defender process/file/network telemetry. The guest-facing page is generic; the rule attribution comes from Purview Activity Explorer and Unified Audit.
 
-The earlier rule export remains in [baseline evidence](docs/evidence/public/dlp-rule.json). It used an external-user block; a later readback found a FalsePositive override. The strict replacement avoids that override. The old rule is awaiting service-side deletion. In Microsoft's [cmdlet reference](https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/set-dlpcompliancerule?view=exchange-ps), `NotifyAllowOverride` is an enum array, not a Boolean.
-
-Microsoft documents the [simple-condition limitation of Test-DlpPolicies](https://learn.microsoft.com/en-us/purview/dlp-test-dlp-policies). The [access diagnostic](docs/evidence/public/dlp-access-diagnostic.json) separates current permissions from the earlier guest test. No retest or rule change was made during this pass.
-
-The subsequent user-provided Details captures show both files as not shared, with no visible DLP warning or policy tip. The financial file has an empty Sensitivity field; the control captures do not display it. This post-cleanup state does not attribute the earlier block. The observations are recorded in the [access diagnostic](docs/evidence/public/dlp-access-diagnostic.json); original captures remain private.
+See the [validation report](VALIDATION.md), [control matrix](CONTROL_MATRIX.md), [public evidence index](docs/evidence/public/README.md), and [limitations](LIMITATIONS.md).

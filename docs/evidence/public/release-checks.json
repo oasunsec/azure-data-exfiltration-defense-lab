@@ -1,22 +1,25 @@
 {
   "python_tests": {
-    "passed": 30,
+    "passed": 33,
     "failed": 0
   },
   "bicep_templates_compiled": 4,
   "public_file_findings": 0,
   "full_history_gitleaks_findings": 0,
-  "kql_queries_executed": 5,
-  "kql_http_status": 200,
-  "dlp_guard_ci": "https://github.com/oasunsec/azure-data-exfiltration-defense-lab/actions/runs/34508209734",
-  "latest_workflow": "https://github.com/oasunsec/azure-data-exfiltration-defense-lab/actions/workflows/validate.yml",
-  "fresh_guest_behavior": "control accessible; financial file blocked by organizational-policy page at 2026-09-09T20:34:58Z",
-  "fresh_activity_explorer_records": 0,
-  "fresh_unified_audit_usable": false,
-  "fresh_dlp_enforcement_validated": false,
-  "dlp_enforcement_validated": false,
-  "post_audit_guest_cleanup": "verified",
-  "recommendation": "NEEDS_MORE_WORK",
-  "public_review_status": "NOT_READY_FOR_PUBLIC",
+  "isolated_dlp_simulation_validated": true,
+  "isolated_dlp_enforcement_validated": true,
+  "isolated_dlp_authoritative_telemetry": [
+    "Activity Explorer",
+    "Unified Audit"
+  ],
+  "isolated_dlp_guest_comparison": "control opened; financial file blocked",
+  "isolated_dlp_policy_mode_after_cleanup": "Disable",
+  "isolated_dlp_policy_distribution_after_cleanup": "Success",
+  "historical_strict_rule_preserved": true,
+  "historical_pending_deletion_rule_preserved": true,
+  "dlp_enforcement_validated": true,
+  "post_test_guest_cleanup": "verified",
+  "recommendation": "PORTFOLIO_READY",
+  "public_review_status": "READY_FOR_PUBLIC_REVIEW",
   "lab_state": "RETAINED FOR CONTINUED VALIDATION"
 }

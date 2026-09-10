@@ -1,0 +1,69 @@
+{
+  "validation": "isolated-purview-simulation-to-enforcement",
+  "syntheticData": true,
+  "simulation": {
+    "activity": "DLP rule matched",
+    "observedAtUtc": "2026-09-10T18:24:19Z",
+    "file": "Financial_Records_CONFIDENTIAL.docx",
+    "policy": "Data Defense Lab - Isolated Financial ID Validation",
+    "rule": "Data Defense Lab - Lab Financial Record ID",
+    "sensitiveInformationType": "Lab Financial Record ID",
+    "classifierCount": 1,
+    "classifierConfidence": 85,
+    "actions": ["NotifyUser", "GenerateAlert"],
+    "distributionStatus": "Success"
+  },
+  "enforcement": {
+    "policyMode": "Enforce",
+    "distributionStatus": "Success",
+    "activityExplorer": {
+      "activity": "DLP rule matched",
+      "observedAtUtc": "2026-09-10T20:24:24Z",
+      "file": "Financial_Records_CONFIDENTIAL.docx",
+      "policy": "Data Defense Lab - Isolated Financial ID Validation",
+      "rule": "Data Defense Lab - Lab Financial Record ID",
+      "sensitiveInformationType": "Lab Financial Record ID",
+      "classifierCount": 1,
+      "classifierConfidence": 85,
+      "action": "BlockAccess"
+    },
+    "unifiedAudit": {
+      "operation": "DLPRuleMatch",
+      "observedAtUtc": "2026-09-10T20:24:23Z",
+      "file": "Financial_Records_CONFIDENTIAL.docx",
+      "policy": "Data Defense Lab - Isolated Financial ID Validation",
+      "rule": "Data Defense Lab - Lab Financial Record ID",
+      "sensitiveInformationType": "Lab Financial Record ID",
+      "classifierCount": 1,
+      "classifierConfidence": 85,
+      "action": "BlockAccess",
+      "identity": "external-lab-guest"
+    }
+  },
+  "guestComparison": {
+    "observedAtUtc": "2026-09-10T20:30:09Z",
+    "controlFile": {
+      "file": "Sharing_Control.txt",
+      "result": "opened"
+    },
+    "financialFile": {
+      "file": "Financial_Records_CONFIDENTIAL.docx",
+      "result": "blocked",
+      "pageMessage": "Due to organizational policies, you can't access this resource."
+    }
+  },
+  "screenshots": [
+    "dlp-isolated-simulation-detail.png",
+    "dlp-isolated-enforcement-detail.png",
+    "dlp-isolated-sit-detail.png",
+    "dlp-isolated-alert-policy.png",
+    "dlp-isolated-control.png",
+    "dlp-isolated-financial-block.png"
+  ],
+  "interpretation": "The custom classifier matched the synthetic financial document in simulation and enforcement. Unified Audit and Activity Explorer name the isolated policy, rule, classifier, and BlockAccess action. The guest-facing block page is generic; the attribution comes from Purview telemetry.",
+  "limits": [
+    "The callback or block event does not identify a person or prove exfiltration.",
+    "The source identity remains an external lab guest alias and is not an attribution claim.",
+    "The stale historical PendingDeletion rule was not modified during this validation."
+  ]
+}

@@ -21,11 +21,11 @@ Screenshots are genuine portal captures cropped to the relevant controls. JSON c
 | [Policy compliance](policy-compliance.json) | Classification remediation and custom-policy results |
 | [Identity sign-ins](identity-signins.json) | Report-only success and enforced MFA rejection |
 | [Sharing control](sharing-control-test.json) | Anonymous-link requests rejected for both files by the site boundary |
-| [Post-audit guest behavior](dlp-post-audit-test.json) | Control file opened; financial file returned an organizational-policy access-denied page |
-| [Post-audit telemetry](dlp-post-audit-telemetry.json) | Audit ingestion enabled, but no authoritative record named the strict DLP rule |
-| [Fresh guest behavior](dlp-fresh-guest-test.json) | At 20:34:58 UTC the control file opened and the financial file was blocked by the organizational-policy page; no rule name was shown |
-| [Fresh guest screenshots](dlp-fresh-rerun2-control.png, dlp-fresh-rerun2-financial-block.png) | Redacted crops of the control-file result and financial-file block |
-| [Fresh telemetry](dlp-fresh-guest-telemetry.json) | Activity Explorer completed with zero records; Unified Audit returned no usable result and a BadRequest warning; DLP reports returned zero rows |
+| [Historical post-audit guest behavior](dlp-post-audit-test.json) | Earlier credit-card-path control file opened; financial file returned a generic organizational-policy page |
+| [Historical post-audit telemetry](dlp-post-audit-telemetry.json) | The earlier path did not name the historical strict DLP rule; it is retained as a limitation record |
+| [Historical fresh guest behavior](dlp-fresh-guest-test.json) | Earlier credit-card-path comparison; the page did not name a rule |
+| [Historical fresh screenshots](dlp-fresh-rerun2-control.png, dlp-fresh-rerun2-financial-block.png) | Redacted crops from the earlier credit-card-path comparison |
+| [Historical fresh telemetry](dlp-fresh-guest-telemetry.json) | Earlier query window and service warnings; not used for the isolated validation conclusion |
 | [Fresh guest cleanup](dlp-fresh-guest-cleanup.json) | Guest, item permissions, and temporary site administration removed; original sharing and DLP settings preserved |
 | [Post-audit cleanup](dlp-post-audit-cleanup.json) | Guest, item permissions, orphan site user, and temporary administration removed; sharing and DLP rules unchanged |
 | [Original DLP rule](dlp-rule.json) | Earlier external-user rule, retained as baseline evidence |
@@ -35,6 +35,14 @@ Screenshots are genuine portal captures cropped to the relevant controls. JSON c
 | [Read-only access diagnostic](dlp-access-diagnostic.json) | Current permissions, guest sign-in, and unresolved alternative causes |
 | [DLP policy diagnostic](dlp-policy-diagnostic.json) | Current policy/rule comparison, item-level `Test-DlpPolicies` results, and the SharePoint access-denied inspection result |
 | [Isolated DLP simulation](dlp-isolated-simulation.json) | The site-scoped lab policy matched the synthetic financial file in Simulation with the custom classifier; enforcement was not inferred from this record |
+| [Isolated DLP enforcement](dlp-isolated-enforcement.json) | Activity Explorer and Unified Audit name the isolated policy, rule, classifier, and `BlockAccess`; the control opened and the financial file was blocked |
+| [Isolated DLP disable readback](dlp-isolated-disable-readback.json) | The diagnostic policy was disabled after validation and reached distribution `Success`; the rule artifact remains retained |
+| [Isolated simulation detail](dlp-isolated-simulation-detail.png) | Sanitized Purview detail pane showing the simulation match and notification actions |
+| [Isolated enforcement detail](dlp-isolated-enforcement-detail.png) | Sanitized Purview detail pane showing the enforcement match and `BlockAccess` |
+| [Isolated classifier detail](dlp-isolated-sit-detail.png) | Sanitized Purview classifier pane showing one `Lab Financial Record ID` match at high confidence |
+| [Isolated alert policy](dlp-isolated-alert-policy.png) | Sanitized Purview alert pane naming the isolated policy, rule, financial file, and notification actions |
+| [Isolated guest control](dlp-isolated-control.png) | Sanitized control-file result from the external lab guest |
+| [Isolated guest financial block](dlp-isolated-financial-block.png) | Sanitized financial-file organizational-policy block page from the external lab guest |
 | [Activity Explorer query](dlp-activity-query.json) | Successful query with zero records in its 24-hour window |
 | [Current cleanup](dlp-pass-cleanup.json) | Temporary compliance role removed; workload secrets zero; sharing unchanged |
 | [Classifier test](dlp-classifier-test.json) | Credit Card Number matched synthetic text; not a file-enforcement test |

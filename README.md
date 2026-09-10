@@ -28,8 +28,8 @@ flowchart LR
 | MFA | Password-only authentication succeeded in report-only mode and failed when the lab MFA policy was enabled. |
 | Sentinel | A denied write produced a native Medium alert and incident. |
 | Investigation | I correlated three denied reads with preceding changes on the same storage account. |
-| SharePoint DLP | In the fresh post-audit run at 20:34:58 UTC, an authenticated guest opened the nonsensitive control file; the synthetic financial file was blocked by an organizational-policy page. Purview telemetry did not identify the strict rule. |
-| Isolated Purview simulation | A site-scoped diagnostic policy matched `Financial_Records_CONFIDENTIAL.docx` on the unique `LAB-FIN-########` classifier in Simulation; enforcement is still pending. |
+| SharePoint DLP | The isolated site-scoped policy matched the synthetic financial identifier in Simulation and Enforce. Activity Explorer and Unified Audit named the isolated policy, rule, classifier, and `BlockAccess`; the control file opened and the financial file was blocked. The older credit-card path remains historical. |
+| Isolated Purview simulation and enforcement | `Financial_Records_CONFIDENTIAL.docx` matched `Lab Financial Record ID` in Simulation, then the same rule reached `Enable`/`Success` and produced authoritative `BlockAccess` telemetry for the controlled guest comparison. |
 
 ## Evidence
 
@@ -37,7 +37,7 @@ flowchart LR
 
 ## What remains
 
-The fresh post-audit guest run demonstrated an access restriction, but the page and the subsequent Purview queries did not identify the historical strict rule or an enforcement action. The isolated simulation path now has an attributable match and is being carried through enforcement separately. The [Purview record](PURVIEW_DLP.md) keeps those results distinct. Defender endpoint correlation and USB/Bluetooth controls remain outside the tested release.
+The isolated guest run demonstrated the intended file-level difference, and Purview Activity Explorer plus Unified Audit named the isolated rule and `BlockAccess` action. The earlier credit-card path remains a separate historical limitation, including its `PendingDeletion` rule. The [Purview record](PURVIEW_DLP.md) keeps those results distinct. Defender endpoint correlation and USB/Bluetooth controls remain outside the tested release.
 
 A blocked request does not prove every exfiltration path is closed. Authorized downloads remain possible, and resource/time correlation does not identify a person. [Limitations](LIMITATIONS.md) lists the remaining boundaries.
 

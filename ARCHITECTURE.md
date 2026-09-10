@@ -24,9 +24,11 @@ flowchart TD
 
 ## Separate SharePoint path
 
-The dedicated SharePoint site contains the same synthetic financial sample and a nonsensitive sharing-control file. A Purview rule targets credit-card content shared outside the organization. An authenticated guest opened the control file after audit ingestion was enabled; the financial file returned an organizational-policy access block. The page did not name the Purview rule, and no authoritative DLP record was returned in the observation window.
+The dedicated SharePoint site contains the same synthetic financial sample and a nonsensitive sharing-control file. The historical credit-card path remains preserved as an ambiguous behavioral test: an authenticated guest opened the control file, while the financial file returned an organizational-policy access block without naming that historical rule.
 
-This SharePoint path is separate from Blob Storage and the Entra password-grant test. No SharePoint DLP event or Defender endpoint event was correlated into Sentinel in the recorded run.
+The reproducible validation path uses a site-scoped Purview policy with the lab-only `LAB-FIN-########` sensitive-information type. Simulation matched the financial document, and the same policy later reached enforcement. Activity Explorer and Unified Audit named the isolated policy, rule, classifier, and `BlockAccess`; the control file opened while the financial file was blocked. The diagnostic policy was disabled and retained after cleanup. No SharePoint DLP event or Defender endpoint event was correlated into Sentinel in the recorded run.
+
+This SharePoint path is separate from Blob Storage and the Entra password-grant test.
 
 ## Trust boundaries
 
