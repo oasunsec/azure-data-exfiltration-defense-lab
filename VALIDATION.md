@@ -19,7 +19,7 @@ An authoritative DLP record naming **Data Defense Lab - Strict financial access 
 
 ## Tests
 
-**30 tests passed locally.** All four Bicep templates compiled. [GitHub Actions run 34262698507](https://github.com/oasunsec/azure-data-exfiltration-defense-lab/actions/runs/34262698507) passed tests, public-file checks, Bicep compilation, and the full-history Gitleaks scan. This CI run includes the DLP activation regression tests. The latest documentation commit is checked by the same [workflow](https://github.com/oasunsec/azure-data-exfiltration-defense-lab/actions/workflows/validate.yml).
+**30 tests passed locally.** All four Bicep templates compiled. The [GitHub Actions validation workflow](https://github.com/oasunsec/azure-data-exfiltration-defense-lab/actions/workflows/validate.yml) runs the tests, public-file checks, Bicep compilation, and full-history Gitleaks scan on every main push. The workflow includes the DLP activation regression tests.
 
 ## Azure and identity
 
