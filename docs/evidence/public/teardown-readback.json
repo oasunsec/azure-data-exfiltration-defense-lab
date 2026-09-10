@@ -1,0 +1,72 @@
+{
+  "checkedAtUtc": "2026-09-10T22:51:33Z",
+  "status": "complete",
+  "deleted": [
+    {
+      "component": "dedicated Azure resource group and contained storage resources",
+      "classification": "DELETE_BILLABLE",
+      "readback": "absent"
+    },
+    {
+      "component": "five lab-scoped Azure role assignments",
+      "classification": "DELETE_BILLABLE",
+      "readback": "zero remain at the deleted scope"
+    },
+    {
+      "component": "lab subscription and Entra diagnostic settings",
+      "classification": "DELETE_BILLABLE",
+      "readback": "absent"
+    },
+    {
+      "component": "lab Sentinel denied-write analytic",
+      "classification": "DELETE_BILLABLE",
+      "readback": "absent"
+    },
+    {
+      "component": "lab Azure Policy assignments and definitions",
+      "classification": "DELETE_BILLABLE",
+      "readback": "absent"
+    }
+  ],
+  "retained": [
+    {
+      "component": "isolated Purview policy, rule, and custom sensitive information type",
+      "classification": "KEEP_FREE",
+      "readback": "policy disabled; distribution Success"
+    },
+    {
+      "component": "SharePoint lab site and synthetic samples",
+      "classification": "KEEP_FREE",
+      "readback": "retained"
+    },
+    {
+      "component": "three lab app registrations and service principals",
+      "classification": "KEEP_FREE",
+      "readback": "zero password credentials; zero key credentials"
+    },
+    {
+      "component": "scoped Conditional Access policy",
+      "classification": "KEEP_FREE",
+      "readback": "enabled for the dedicated lab user"
+    },
+    {
+      "component": "dedicated licensed lab user",
+      "classification": "REVIEW",
+      "readback": "retained for owner license review"
+    },
+    {
+      "component": "historical strict and PendingDeletion Purview rules",
+      "classification": "REVIEW",
+      "readback": "unchanged"
+    },
+    {
+      "component": "pre-existing shared Log Analytics workspaces and unrelated diagnostic setting",
+      "classification": "REVIEW",
+      "readback": "retained; lab-created feeds removed"
+    }
+  ],
+  "temporaryGuestAndItemPermissions": "removed and previously verified absent",
+  "temporaryAdministrativeAccess": "removed and previously verified absent",
+  "repositoryPrivate": true,
+  "finalStatus": "READY_TO_PUBLISH"
+}

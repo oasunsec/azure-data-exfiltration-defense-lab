@@ -42,4 +42,4 @@ A blocked request does not prove every exfiltration path is closed. Authorized d
 
 ## Related project
 
-**Lab state: RETAINED FOR CONTINUED VALIDATION.**
+**Release state: READY_TO_PUBLISH.** The dedicated Azure resource group and lab-created ingestion components were removed after the evidence was committed. The disabled isolated Purview artifact, SharePoint samples, and credential-free identity objects remain for review. The repository remains private until the owner changes its visibility. See [cost and teardown](COST_AND_TEARDOWN.md).

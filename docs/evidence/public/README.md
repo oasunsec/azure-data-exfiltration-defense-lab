@@ -37,6 +37,7 @@ Screenshots are genuine portal captures cropped to the relevant controls. JSON c
 | [Defender inventory](defender-inventory.json) | No onboarded machines available for endpoint tests |
 | [Credential cleanup](credential-cleanup.json) | Both workload identities have zero password credentials |
 | [Temporary-role cleanup](temporary-role-cleanup.json) | The lab-created compliance elevation was removed |
+| [Teardown readback](teardown-readback.json) | Dedicated Azure resources, lab ingestion feeds, policy objects, roles, and Sentinel analytic removed; retained objects classified |
 | [Release checks](release-checks.json) | Tests, compiled templates, privacy check, and secret-scan results |
 
 Each result describes the tested operation. See [limitations](../../../LIMITATIONS.md) for investigation and attribution boundaries.

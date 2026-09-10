@@ -20,7 +20,7 @@ The earlier historical credit-card path still lacks an authoritative record nami
 
 ## Tests
 
-**33 tests passed locally.** All four Bicep templates compiled. The [GitHub Actions validation workflow](https://github.com/oasunsec/azure-data-exfiltration-defense-lab/actions/workflows/validate.yml) runs the tests, public-file checks, Bicep compilation, and full-history Gitleaks scan on every main push. The workflow includes the DLP activation regression tests.
+**33 tests passed locally.** All four Bicep templates compiled. The [GitHub Actions validation workflow](https://github.com/oasunsec/azure-data-exfiltration-defense-lab/actions/workflows/validate.yml) runs the tests, public-file checks, Bicep compilation, and full-history Gitleaks scan on every main push. The workflow includes the DLP activation regression tests. Final release checks are recorded in [release-checks.json](docs/evidence/public/release-checks.json).
 
 ## Azure and identity
 
@@ -36,7 +36,7 @@ The older credit-card path remains private troubleshooting history. Its strict r
 
 ## Sentinel
 
-The enabled Medium denied-write analytic produced a native alert and incident. All source rows remain in the workspace. Incident grouping is configured by storage resource; a repeated-alert grouping test remains unproven. The cross-source investigation is a resource/time join, not an identity attribution claim.
+The Medium denied-write analytic produced a native alert and incident before teardown. Its evidence remains committed; the dedicated analytic was then deleted from the shared workspace. Previously ingested rows remain subject to that workspace's retention. Incident grouping was configured by storage resource, but a repeated-alert grouping test remains unproven. The cross-source investigation is a resource/time join, not an identity attribution claim.
 
 ## Evidence and security
 
@@ -46,6 +46,6 @@ Public JSON uses selected fields and aliases. Storage, MFA, and Purview portal c
 
 **PORTFOLIO_READY.** The isolated Purview path has attributable simulation and enforcement evidence, including `BlockAccess` telemetry and the controlled guest comparison. The historical credit-card path and its `PendingDeletion` rule remain preserved as a documented limitation. The Azure, identity, and Sentinel results stand. Defender endpoint and USB/Bluetooth work can remain outside this release.
 
-**Public-review status: READY_FOR_PUBLIC_REVIEW.** The repository remains private per the current lab instruction.
+**Public-review status: READY_TO_PUBLISH.** The repository remains private so the owner can perform the final visibility change.
 
-**Lab state: RETAINED FOR CONTINUED VALIDATION.**
+**Lab state: AZURE TEARDOWN COMPLETE; MICROSOFT 365 EVIDENCE ARTIFACTS RETAINED.** The dedicated Azure resource group, lab diagnostics, Azure Policy objects, scoped role assignments, and Sentinel analytic were removed after proof was committed. The isolated Purview policy remains disabled, and the historical `PendingDeletion` object remains untouched. See [cost and teardown](COST_AND_TEARDOWN.md).

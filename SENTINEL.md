@@ -2,11 +2,11 @@
 
 ## Sources observed
 
-`StorageBlobLogs`, `AzureActivity`, `SigninLogs`, and `AuditLogs` contained actual lab events. Storage resource logs use a dedicated table. Subscription Activity and tenant Entra diagnostic settings route to the existing workspace.
+`StorageBlobLogs`, `AzureActivity`, `SigninLogs`, and `AuditLogs` contained actual lab events. Storage resource logs used a dedicated table. The lab subscription Activity and Entra diagnostic settings routed to the existing workspace during validation; both lab-created feeds were removed during teardown.
 
 ## Native detection
 
-**Financial records - denied blob write** is an enabled scheduled analytic with Medium severity. It selects rejected PutBlob operations in the financial container. A controlled read-only workload generated a 403 AuthorizationPermissionMismatch; Sentinel produced a native scheduled alert and incident **19**, titled **Financial records - denied blob write**, with Medium severity.
+**Financial records - denied blob write** was a scheduled analytic with Medium severity. It selected rejected PutBlob operations in the financial container. A controlled read-only workload generated a 403 AuthorizationPermissionMismatch; Sentinel produced a native scheduled alert and incident **19**, titled **Financial records - denied blob write**, with Medium severity. The dedicated analytic was deleted after its committed evidence was verified; the shared workspace was retained.
 
 The alert identifies a rejected write, not exfiltration or malicious intent.
 

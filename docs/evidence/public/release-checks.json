@@ -1,13 +1,25 @@
 {
+  "checkedAtUtc": "2026-09-10T22:55:53Z",
   "python_tests": {
     "passed": 33,
     "failed": 0
   },
   "bicep_templates_compiled": 4,
   "public_file_findings": 0,
+  "known_private_identifier_findings": 0,
   "full_history_gitleaks_findings": 0,
-  "ci_validation_run": "https://github.com/oasunsec/azure-data-exfiltration-defense-lab/actions/runs/34536941612",
+  "full_history_gitleaks_version": "8.30.1",
+  "full_history_gitleaks_checksum_verified": true,
+  "ci_validation_run": "pending final main validation",
   "ci_validation_workflow": "https://github.com/oasunsec/azure-data-exfiltration-defense-lab/actions/workflows/validate.yml",
+  "screenshot_pointer_audit": {
+    "tracked_public_pngs_reviewed": 17,
+    "retained_manual_pngs_reviewed": 14,
+    "tracked_public_pngs_corrected": 1,
+    "retained_manual_pngs_corrected": 12,
+    "current_pointer_findings": 0,
+    "manual_captures_tracked_by_git": 0
+  },
   "isolated_dlp_simulation_validated": true,
   "isolated_dlp_enforcement_validated": true,
   "isolated_dlp_authoritative_telemetry": [
@@ -15,13 +27,23 @@
     "Unified Audit"
   ],
   "isolated_dlp_guest_comparison": "control opened; financial file blocked",
+  "isolated_dlp_guest_comparison_relationship": "subsequent behavioral validation; no direct correlation to the earlier telemetry claimed",
   "isolated_dlp_policy_mode_after_cleanup": "Disable",
   "isolated_dlp_policy_distribution_after_cleanup": "Success",
   "historical_strict_rule_preserved": true,
   "historical_pending_deletion_rule_preserved": true,
   "dlp_enforcement_validated": true,
   "post_test_guest_cleanup": "verified",
+  "azure_teardown": {
+    "dedicated_resource_group": "absent",
+    "lab_role_assignments": "absent",
+    "lab_diagnostic_settings": "absent",
+    "lab_sentinel_analytic": "absent",
+    "lab_policy_objects": "absent",
+    "shared_workspaces": "retained"
+  },
+  "repository_private": true,
   "recommendation": "PORTFOLIO_READY",
-  "public_review_status": "READY_FOR_PUBLIC_REVIEW",
-  "lab_state": "RETAINED FOR CONTINUED VALIDATION"
+  "public_review_status": "READY_TO_PUBLISH",
+  "lab_state": "AZURE TEARDOWN COMPLETE; MICROSOFT 365 EVIDENCE ARTIFACTS RETAINED"
 }

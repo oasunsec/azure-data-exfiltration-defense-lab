@@ -2,9 +2,9 @@
 
 ## Azure data path
 
-The private `financial-records` container holds `Financial_Records_CONFIDENTIAL.docx`. Storage uses Microsoft-managed keys, infrastructure encryption, TLS 1.2, disabled shared-key authorization, and a default-deny network rule with one operator IP. The account still has a public endpoint; it is not a private-endpoint deployment.
+During validation, the private `financial-records` container held `Financial_Records_CONFIDENTIAL.docx`. Storage used Microsoft-managed keys, infrastructure encryption, TLS 1.2, disabled shared-key authorization, and a default-deny network rule with one operator IP. The account had a public endpoint; it was not a private-endpoint deployment. The dedicated Azure resource group was deleted after the evidence was committed, while the Bicep definitions remain reproducible.
 
-Two dedicated workload identities separate management-plane and data-plane permissions. Reader/Contributor apply to the lab resource group; Blob Data Reader/Contributor apply only to the financial container. Neither test identity has Owner or role-assignment authority.
+During validation, two dedicated workload identities separated management-plane and data-plane permissions. Reader/Contributor applied to the lab resource group; Blob Data Reader/Contributor applied only to the financial container. Neither test identity had Owner or role-assignment authority. The identities remain credential-free, and their Azure role assignments were removed during teardown.
 
 ```mermaid
 flowchart TD
@@ -35,4 +35,4 @@ This SharePoint path is separate from Blob Storage and the Entra password-grant 
 - OAuth authorization and network authorization are separate checks. The firewall test changed only the dedicated account allowlist, then restored it.
 - Resource/time correlation joins the same storage account within five minutes. It does not equate the configuration caller with the data requester.
 - Source IP can represent NAT, VPN, proxy, or security infrastructure. Identity, endpoint, file-audit, and DLP evidence are required for stronger attribution.
-- Tenant identity diagnostics and subscription Activity diagnostics feed an existing workspace. Investigation queries restrict the lab scope; collection itself is broader.
+- Tenant identity diagnostics and the lab subscription Activity diagnostic fed an existing workspace during validation. Both lab-created feeds were removed during teardown. The pre-existing shared workspaces and their unrelated diagnostic configuration remain.
