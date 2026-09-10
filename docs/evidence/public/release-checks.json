@@ -1,5 +1,5 @@
 {
-  "checkedAtUtc": "2026-09-10T22:55:53Z",
+  "checkedAtUtc": "2026-09-10T23:01:40Z",
   "python_tests": {
     "passed": 33,
     "failed": 0
@@ -10,7 +10,7 @@
   "full_history_gitleaks_findings": 0,
   "full_history_gitleaks_version": "8.30.1",
   "full_history_gitleaks_checksum_verified": true,
-  "ci_validation_run": "pending final main validation",
+  "ci_validation_run": "https://github.com/oasunsec/azure-data-exfiltration-defense-lab/actions/runs/34540174175",
   "ci_validation_workflow": "https://github.com/oasunsec/azure-data-exfiltration-defense-lab/actions/workflows/validate.yml",
   "screenshot_pointer_audit": {
     "tracked_public_pngs_reviewed": 17,
