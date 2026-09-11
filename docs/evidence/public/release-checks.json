@@ -20,8 +20,8 @@
     "current_pointer_findings": 0,
     "manual_captures_tracked_by_git": 0
   },
-  "isolated_dlp_simulation_validated": true,
-  "isolated_dlp_enforcement_validated": true,
+  "isolated_dlp_simulation_match_observed": true,
+  "isolated_dlp_enforcement_match_observed": true,
   "isolated_dlp_authoritative_telemetry": [
     "Activity Explorer",
     "Unified Audit"
@@ -32,7 +32,6 @@
   "isolated_dlp_policy_distribution_after_cleanup": "Success",
   "historical_strict_rule_preserved": true,
   "historical_pending_deletion_rule_preserved": true,
-  "dlp_enforcement_validated": true,
   "post_test_guest_cleanup": "verified",
   "azure_teardown": {
     "dedicated_resource_group": "absent",
@@ -41,9 +40,5 @@
     "lab_sentinel_analytic": "absent",
     "lab_policy_objects": "absent",
     "shared_workspaces": "retained"
-  },
-  "repository_private": true,
-  "recommendation": "PORTFOLIO_READY",
-  "public_review_status": "READY_TO_PUBLISH",
-  "lab_state": "AZURE TEARDOWN COMPLETE; MICROSOFT 365 EVIDENCE ARTIFACTS RETAINED"
+  }
 }

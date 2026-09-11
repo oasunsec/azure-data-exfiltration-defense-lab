@@ -1,6 +1,6 @@
 {
   "CheckedAtUtc": "2026-09-10T17:37:57.605762+00:00",
-  "Mode": "Read-only; no guest retest or configuration changes",
+  "RecordType": "Historical read-only diagnostic",
   "ItemPermissions": {
     "files": [
       "Financial_Records_CONFIDENTIAL.docx",
@@ -28,8 +28,8 @@
     "SensitivityLabel": "Fresh site SensitivityLabel is blank; Activity Explorer undo event references no sensitivity label IDs. File-level encryption/protection remains unverified.",
     "SiteOrItemPermissions": "Site unlocked; authenticated guest sharing permitted; RestrictedAccessControl=false. Both user-provided Details views now show item not shared, without a policy tip. Get-SPOUser failed E_ACCESSDENIED, so effective group membership remains unresolved."
   },
-  "StrictRuleEnforcementProven": false,
-  "Recommendation": "NEEDS_MORE_WORK",
+  "StrictRuleAttributionObserved": false,
+  "RecordUse": "Historical credit-card-path diagnostic; not used as evidence for the isolated policy",
   "PurviewReadback": {
     "CheckedAtUtc": "2026-09-10T17:47:31Z",
     "DistributionDetailUsed": true,

@@ -1,8 +1,6 @@
 # Azure Data Exfiltration Defense Lab
 
-I tested storage, identity, and detection controls around a dedicated financial-records container and SharePoint site.
-
-**Sample uses synthetic financial data only.**
+This lab demonstrates storage, identity, detection, and SharePoint data-loss-prevention controls using synthetic financial data.
 
 ## Architecture
 
@@ -15,31 +13,29 @@ flowchart LR
   E[Entra sign-ins] --> W
   L --> W
   W --> Q[Sentinel alert and investigation]
-  F[Financial document] --> P[Separate SharePoint and Purview test]
+  F[Financial document] --> P[SharePoint and Purview DLP]
 ```
 
-## Controls tested
+## Results
 
-| Control | Result |
+| Control | Observed result |
 | --- | --- |
-| Scoped RBAC | Reader downloaded the file but could not overwrite it. Contributor uploaded data but could not grant roles. |
-| Storage access | Anonymous and shared-key requests were rejected. Removing the allowed IP blocked an authorized reader; restoring it restored access. |
-| Azure Policy | Public-blob enablement was rejected. The classification audit passed after I added the required tag. |
+| Scoped RBAC | The Reader downloaded the file but could not overwrite it. The Contributor uploaded data but could not grant roles. |
+| Storage access | Anonymous and shared-key requests were rejected. An authorized reader was blocked outside the IP allowlist and restored after the rule was restored. |
+| Azure Policy | Public-blob enablement was rejected. The classification audit passed after the required tag was applied. |
 | MFA | Password-only authentication succeeded in report-only mode and failed when the lab MFA policy was enabled. |
-| Sentinel | A denied write produced a native Medium alert and incident. |
-| Investigation | I correlated three denied reads with preceding changes on the same storage account. |
-| SharePoint DLP | The isolated site-scoped policy matched `Lab Financial Record ID` in Simulation and reached enforcement distribution `Success`. Activity Explorer and Unified Audit independently recorded the exact policy, rule, file, classifier, and `BlockAccess`. A subsequent guest comparison opened the control file and blocked the financial file; no direct correlation between the 20:24 telemetry and the 20:30 guest requests is claimed. |
+| Sentinel | A denied write produced a native Medium alert and incident. Three denied reads correlated with preceding storage-account changes. |
+| SharePoint DLP | The custom `Lab Financial Record ID` matched in simulation. Activity Explorer and Unified Audit then named the isolated policy, rule, file, classifier, and `BlockAccess`. |
+| Guest comparison | `Sharing_Control.txt` opened and `Financial_Records_CONFIDENTIAL.docx` was blocked. This 20:30 UTC comparison is separate from the 20:24 UTC Purview records. |
 
-## Evidence
+## Evidence and implementation
 
-[Portal captures and API results](docs/evidence/public/README.md) · [Control matrix](CONTROL_MATRIX.md) · [Validation](VALIDATION.md) · [Architecture](ARCHITECTURE.md) · [KQL](docs/kql/README.md) · [Bicep](infra/)
+[Evidence](docs/evidence/public/README.md) · [Control matrix](CONTROL_MATRIX.md) · [Test results](VALIDATION.md) · [Architecture](ARCHITECTURE.md) · [KQL](docs/kql/README.md) · [Bicep](infra/)
 
-## What remains
+## Scope
 
-The 20:24 UTC Purview records prove the isolated policy matched the financial file and carried the `BlockAccess` action. The 20:30 UTC guest comparison is subsequent behavioral validation, kept separate because direct event correlation was not established. The historical `PendingDeletion` rule remains a cleanup issue. Defender endpoint correlation and USB/Bluetooth controls remain outside the tested release.
+The evidence covers the isolated SharePoint DLP scenario and the Azure, identity, and Sentinel controls listed above. Endpoint DLP, USB/Bluetooth controls, Defender endpoint correlation, and universal exfiltration prevention were outside the test scope. The historical credit-card DLP rule is documented separately and is not used to support the isolated-policy result. See [limitations](LIMITATIONS.md).
 
-A blocked request does not prove every exfiltration path is closed. Authorized downloads remain possible, and resource/time correlation does not identify a person. [Limitations](LIMITATIONS.md) lists the remaining boundaries.
+## Teardown
 
-## Related project
-
-**Release state: READY_TO_PUBLISH.** The dedicated Azure resource group and lab-created ingestion components were removed after the evidence was committed. The disabled isolated Purview artifact, SharePoint samples, and credential-free identity objects remain for review. The repository remains private until the owner changes its visibility. See [cost and teardown](COST_AND_TEARDOWN.md).
+Dedicated Azure resources, lab-created ingestion feeds, scoped Azure role assignments, custom Azure Policy objects, and the Sentinel analytic were removed after evidence capture. The isolated Purview policy is retained disabled, and the historical `PendingDeletion` object is unchanged. See [cost and teardown](COST_AND_TEARDOWN.md).

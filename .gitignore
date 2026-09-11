@@ -13,6 +13,7 @@ evidence-private/
 generated/
 decoys/
 output/
+runtime/
 *.bicep.deploy.json
 *.bicep.deploy.parameters.json
 infra/main.json

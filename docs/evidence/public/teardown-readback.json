@@ -1,6 +1,5 @@
 {
   "checkedAtUtc": "2026-09-10T22:51:33Z",
-  "status": "complete",
   "deleted": [
     {
       "component": "dedicated Azure resource group and contained storage resources",
@@ -52,7 +51,7 @@
     {
       "component": "dedicated licensed lab user",
       "classification": "REVIEW",
-      "readback": "retained for owner license review"
+      "readback": "retained; license management is separate from Azure teardown"
     },
     {
       "component": "historical strict and PendingDeletion Purview rules",
@@ -66,7 +65,5 @@
     }
   ],
   "temporaryGuestAndItemPermissions": "removed and previously verified absent",
-  "temporaryAdministrativeAccess": "removed and previously verified absent",
-  "repositoryPrivate": true,
-  "finalStatus": "READY_TO_PUBLISH"
+  "temporaryAdministrativeAccess": "removed and previously verified absent"
 }

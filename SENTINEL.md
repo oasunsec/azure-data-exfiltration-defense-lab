@@ -10,7 +10,7 @@
 
 The alert identifies a rejected write, not exfiltration or malicious intent.
 
-The rule runs every five minutes and groups incidents by the mapped storage resource over 24 hours. This avoids treating every matching row as a separate incident, but can combine different callers against that account. Reopening closed incidents is disabled. Repeat-incident grouping has not yet been behaviorally proven by a second alert.
+The rule runs every five minutes and groups incidents by the mapped storage resource over 24 hours. This avoids treating every matching row as a separate incident, but can combine different callers against that account. Reopening closed incidents is disabled. No second alert was generated to exercise repeat-incident grouping.
 
 ## Investigation
 

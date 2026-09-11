@@ -100,8 +100,7 @@
     "customRuleStructure": "Configured nested/grouped conditions; unsupported by Test-DlpPolicies",
     "scopeOverlap": "The default policy covers all SharePoint and OneDrive locations; its rules do not block access.",
     "testResult": "Classifier detected; external-sharing flags false after cleanup. The strict rule uses grouped/nested AdvancedRule conditions, which Test-DlpPolicies does not support. Its reported IsMatched=false is inconclusive for that rule; it does not establish whether the earlier guest block was caused by DLP.",
-    "dlpEnforcementProven": false,
-    "nextEvidenceRequired": "Authoritative strict-rule match and enforcement action linked to the guest test; no retest authorized in this diagnostic pass."
+    "strictRuleAttributionObserved": false
   },
   "SubsequentDetailsInspection": {
     "Source": "User-provided SharePoint Details screenshots, following site-owner inspection request",

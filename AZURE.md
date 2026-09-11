@@ -1,6 +1,6 @@
 # Azure controls
 
-I deployed the lab resource group in South Central US for validation. The storage account used Standard LRS, private blob access, seven-day blob/container soft delete, and blob versioning. Its data-plane diagnostic categories were StorageRead, StorageWrite, and StorageDelete in the dedicated `StorageBlobLogs` table.
+The lab resource group was deployed in South Central US. The storage account used Standard LRS, private blob access, seven-day blob/container soft delete, and blob versioning. Its data-plane diagnostic categories were StorageRead, StorageWrite, and StorageDelete in the dedicated `StorageBlobLogs` table.
 
 The account key remained capable of being listed by the existing operator, but data requests signed with it were rejected. Disabling Shared Key is not equivalent to disabling the management-plane listKeys operation. No shared key is used by the lab workloads.
 

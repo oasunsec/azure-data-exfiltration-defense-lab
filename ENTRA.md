@@ -1,6 +1,6 @@
 # Entra MFA test
 
-I scoped the MFA Conditional Access policy to one lab user and excluded the existing operator and Global Administrator role. The dedicated test app has delegated User.Read consent for that user.
+The MFA Conditional Access policy targets one lab user and excludes the existing operator and Global Administrator role. The dedicated test app has delegated User.Read consent for that user.
 
 | Test | Result |
 | --- | --- |
