@@ -1,6 +1,6 @@
 # Investigation queries
 
-These queries ran against the retained lab workspace. Identifiers and IP addresses belong in the private investigation record; public exports use aliases.
+These queries ran against the lab workspace. Public exports of their results use aliases instead of real identifiers and IP addresses.
 
 | Query | Question | Sources |
 | --- | --- | --- |
@@ -10,8 +10,8 @@ These queries ran against the retained lab workspace. Identifiers and IP address
 | [Cross-source correlation](storage-change-denied-access.kql) | Did denied access follow a change on the same account within five minutes? | AzureActivity + StorageBlobLogs |
 | [Denied write detection](denied-financial-write.kql) | Has a financial-record write been rejected in newly ingested events? | StorageBlobLogs |
 
-The correlation query returns the closest preceding successful account write for each denied request. A match does not identify the actor or prove that the change caused the denial. The controlled firewall test supplies the separate causal evidence.
+For each denied request, the correlation query returns the closest earlier successful change to the same account. A match does not tell you who made the request or prove the change caused the denial. The firewall test is the evidence for cause and effect.
 
-The scheduled rule checks five minutes of ingestion time within a one-hour event lookback. Events delayed beyond one hour remain searchable but can fall outside this detection. Incident grouping uses the storage resource; it can combine different callers on that account. It is not exact per-request deduplication.
+The scheduled rule checks the last five minutes of ingestion within a one-hour event lookback. Events that arrive more than an hour late are still searchable but can be missed by the rule. Incidents are grouped by storage account, so different callers on that account can end up in one incident.
 
-Defender and Purview event queries are not presented as working integrations because those sources have not been validated in this workspace.
+There are no Defender or Purview queries here, because those sources were never connected to this workspace.

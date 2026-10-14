@@ -1,13 +1,18 @@
-# Security boundaries
+# Security
 
-Only synthetic test documents are used. Raw API responses, credentials, generated documents, screenshots awaiting review, and deployment parameters stay in ignored directories. Public evidence uses selected fields and lab aliases.
+## What is in this repository
 
-The storage endpoint is reachable only from the configured IP allowlist for data requests; the service still uses a public endpoint. Shared-key and anonymous data authorization are disabled. OAuth readers can download data when both RBAC and network controls allow it, so this configuration is not a universal exfiltration barrier.
+Only synthetic test documents were used. Raw API responses, credentials, generated documents, unreviewed screenshots and deployment parameters stay in ignored folders and were never committed. Public evidence keeps selected fields and uses lab aliases.
 
-Temporary test credentials are removed after use. No Owner assignment is required by the workload identities. Existing tenant administration is used only for provisioning; retained workloads use scoped data permissions.
+Before the repository was made public, the full history was scanned with Gitleaks and checked by hand for tenant names, IDs, emails, IPs and personal details, including every screenshot.
 
-The Conditional Access policy targets one lab user and excludes administrators. Site-level sharing restrictions were preserved. The authenticated guest and file permissions created for the post-audit test were removed afterward; the guest was deleted. Temporary Purview administration assignments were removed after validation. User-added permissions were preserved.
+## How the lab was run
 
-Public releases require a full-history Gitleaks scan and a separate identifier/privacy review. Secret scanning does not detect every sensitive screenshot, tenant identifier, or operational endpoint.
+- Data requests were only accepted from one allowlisted IP, but the storage account still had a public endpoint. Shared-key and anonymous access were turned off. Anyone with read permission and an allowed IP could still download the file, so this setup does not stop every kind of exfiltration.
+- Temporary test credentials were removed after use. The workload identities never needed Owner.
+- The Conditional Access policy applied to one lab user and excluded administrators.
+- The external guest, their file permissions and the temporary Purview admin role were removed after the DLP test. Existing site sharing settings and user-added permissions were not changed.
 
-Report suspected exposure privately through GitHub's private vulnerability reporting if available. Do not paste credentials, signed links, or private evidence into a public issue.
+## Reporting a problem
+
+If you find something sensitive in this repository, report it through GitHub's private vulnerability reporting. Please do not paste credentials, signed links or private evidence into a public issue.
